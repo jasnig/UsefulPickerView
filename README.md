@@ -83,4 +83,4 @@ pod 'UsefulPickerView', '~> 0.0.9'
 
 ## License
 
-ScrollPageView is released under the MIT license. See LICENSE for details.
+UsefulPickerView is released under the MIT license. See LICENSE for details.
