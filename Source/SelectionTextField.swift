@@ -30,14 +30,14 @@
 
 import UIKit
 
-class SelectionTextField: UITextField {
+public class SelectionTextField: UITextField {
 
-    typealias BtnAction = () -> Void
-    typealias SingleDoneAction = (textField: UITextField, selectedIndex: Int, selectedValue: String) -> Void
-    typealias MultipleDoneAction = (textField: UITextField, selectedIndexs: [Int], selectedValues: [String]) -> Void
-    typealias DateDoneAction = (textField: UITextField, selectedDate: NSDate) -> Void
+    public typealias BtnAction = () -> Void
+    public typealias SingleDoneAction = (textField: UITextField, selectedIndex: Int, selectedValue: String) -> Void
+    public typealias MultipleDoneAction = (textField: UITextField, selectedIndexs: [Int], selectedValues: [String]) -> Void
+    public typealias DateDoneAction = (textField: UITextField, selectedDate: NSDate) -> Void
     
-    typealias MultipleAssociatedDataType = [[[String: [String]?]]]
+    public typealias MultipleAssociatedDataType = [[[String: [String]?]]]
     
     ///  保存pickerView的初始化
     private var setUpPickerClosure:(() -> PickerView)?
@@ -45,13 +45,13 @@ class SelectionTextField: UITextField {
     private var autoSetSelectedText = false
     
     //MARK: 初始化
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
         
     }
     // 从xib或storyboard中初始化时候调用
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
@@ -82,7 +82,7 @@ extension SelectionTextField {
         inputView = nil
     }
     
-    override func caretRectForPosition(position: UITextPosition) -> CGRect {
+    override public func caretRectForPosition(position: UITextPosition) -> CGRect {
         return CGRectZero
     }
     
@@ -100,7 +100,7 @@ extension SelectionTextField {
     ///  - parameter doneAction:                 响应完成的Closure
     ///
     ///  - returns:
-    func showSingleColPicker(toolBarTitle: String, data: [String], defaultSelectedIndex: Int?,autoSetSelectedText: Bool, doneAction: SingleDoneAction?) {
+    public func showSingleColPicker(toolBarTitle: String, data: [String], defaultSelectedIndex: Int?,autoSetSelectedText: Bool, doneAction: SingleDoneAction?) {
         
         self.autoSetSelectedText = autoSetSelectedText
 
@@ -132,7 +132,7 @@ extension SelectionTextField {
     ///  - parameter doneAction:                 响应完成的Closure
     ///
     ///  - returns:
-    func showMultipleColsPicker(toolBarTitle: String, data: [[String]], defaultSelectedIndexs: [Int]?, autoSetSelectedText: Bool, doneAction: MultipleDoneAction?) {
+    public func showMultipleColsPicker(toolBarTitle: String, data: [[String]], defaultSelectedIndexs: [Int]?, autoSetSelectedText: Bool, doneAction: MultipleDoneAction?) {
         self.autoSetSelectedText = autoSetSelectedText
 
         setUpPickerClosure = {() -> PickerView in
@@ -159,7 +159,7 @@ extension SelectionTextField {
     ///  - parameter doneAction:                 响应完成的Closure
     ///
     ///  - returns:
-    func showMultipleAssociatedColsPicker(toolBarTitle: String, data: MultipleAssociatedDataType, defaultSelectedValues: [String]?,autoSetSelectedText: Bool, doneAction: MultipleDoneAction?) {
+    public func showMultipleAssociatedColsPicker(toolBarTitle: String, data: MultipleAssociatedDataType, defaultSelectedValues: [String]?,autoSetSelectedText: Bool, doneAction: MultipleDoneAction?) {
         self.autoSetSelectedText = autoSetSelectedText
 
         setUpPickerClosure = {() -> PickerView in
@@ -187,7 +187,7 @@ extension SelectionTextField {
     ///
     ///  - returns:
     
-    func showCitiesPicker(toolBarTitle: String, defaultSelectedValues: [String]?,autoSetSelectedText: Bool, doneAction: MultipleDoneAction?) {
+    public func showCitiesPicker(toolBarTitle: String, defaultSelectedValues: [String]?,autoSetSelectedText: Bool, doneAction: MultipleDoneAction?) {
         self.autoSetSelectedText = autoSetSelectedText
 
         setUpPickerClosure = {() -> PickerView in
@@ -211,7 +211,7 @@ extension SelectionTextField {
     ///  - parameter doneAction:                 响应完成的Closure
     ///
     ///  - returns:
-    func showDatePicker(toolBarTitle: String, datePickerSetting: DatePickerSetting = DatePickerSetting(), autoSetSelectedText: Bool, doneAction: DateDoneAction?) {
+    public func showDatePicker(toolBarTitle: String, datePickerSetting: DatePickerSetting = DatePickerSetting(), autoSetSelectedText: Bool, doneAction: DateDoneAction?) {
         self.autoSetSelectedText = autoSetSelectedText
 
         setUpPickerClosure = {() -> PickerView in
@@ -232,13 +232,13 @@ extension SelectionTextField {
 
 // MARK: - PickerViewDelegate -- 如果设置了autoSetSelectedText为true 这些代理方法中将以默认的格式自动设置textField的值
 extension SelectionTextField: PickerViewDelegate {
-    func singleColDidSelecte(selectedIndex: Int, selectedValue: String) {
+    public func singleColDidSelecte(selectedIndex: Int, selectedValue: String) {
         if autoSetSelectedText {
             text = " " + selectedValue
         }
     }
     
-    func multipleColsDidSelecte(selectedIndexs: [Int], selectedValues: [String]) {
+    public func multipleColsDidSelecte(selectedIndexs: [Int], selectedValues: [String]) {
         
         
         if autoSetSelectedText {
@@ -248,7 +248,7 @@ extension SelectionTextField: PickerViewDelegate {
         }
     }
     
-    func dateDidSelecte(selectedDate: NSDate) {
+    public func dateDidSelecte(selectedDate: NSDate) {
         if autoSetSelectedText {
             
             let formatter = NSDateFormatter()

@@ -30,27 +30,27 @@
 
 import UIKit
 
-class ToolBarView: UIView {
+public class ToolBarView: UIView {
     
     typealias CustomClosures = (titleLabel: UILabel, cancleBtn: UIButton, doneBtn: UIButton) -> Void
-    typealias BtnAction = () -> Void
+    public typealias BtnAction = () -> Void
     
-    var title = "请选择" {
+    public var title = "请选择" {
         didSet {
             titleLabel.text = title
         }
     }
     
-    var doneAction: BtnAction?
-    var cancelAction: BtnAction?
+    public var doneAction: BtnAction?
+    public var cancelAction: BtnAction?
     // 用来产生上下分割线的效果
-    lazy var contentView: UIView = {
+    private lazy var contentView: UIView = {
         let content = UIView()
         content.backgroundColor = UIColor.whiteColor()
         return content
     }()
     // 文本框
-    lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.blackColor()
         label.textAlignment = .Center
@@ -58,7 +58,7 @@ class ToolBarView: UIView {
     }()
     
     // 取消按钮
-    lazy var cancleBtn: UIButton = {
+    private lazy var cancleBtn: UIButton = {
         let btn = UIButton()
         btn.setTitle("取消", forState: .Normal)
         btn.setTitleColor(UIColor.blackColor(), forState: .Normal)
@@ -66,24 +66,24 @@ class ToolBarView: UIView {
     }()
     
     // 完成按钮
-    lazy var doneBtn: UIButton = {
+    private lazy var doneBtn: UIButton = {
         let donebtn = UIButton()
         donebtn.setTitle("完成", forState: .Normal)
         donebtn.setTitleColor(UIColor.blackColor(), forState: .Normal)
         return donebtn
     }()
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func commonInit() {
+    private func commonInit() {
         backgroundColor = UIColor.lightTextColor()
         addSubview(contentView)
         contentView.addSubview(cancleBtn)
@@ -102,7 +102,7 @@ class ToolBarView: UIView {
         
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         let margin = 15.0
         let contentHeight = Double(bounds.size.height) - 2.0

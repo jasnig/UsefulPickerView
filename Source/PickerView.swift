@@ -31,34 +31,36 @@
 import UIKit
 
 //MARK:- PickerViewDelegate 用于自动设置TextField的选中值
-protocol PickerViewDelegate: class {
+public protocol PickerViewDelegate: class {
     func singleColDidSelecte(selectedIndex: Int, selectedValue: String)
     func multipleColsDidSelecte(selectedIndexs: [Int], selectedValues: [String])
     func dateDidSelecte(selectedDate: NSDate)
 }
 
 //MARK:- 配置UIDatePicker的样式
-struct DatePickerSetting {
+public struct DatePickerSetting {
     
-    var date = NSDate()
-    var dateMode = UIDatePickerMode.Date
-    var minimumDate: NSDate?
-    var maximumDate: NSDate?
-    
+    public var date = NSDate()
+    public var dateMode = UIDatePickerMode.Date
+    public var minimumDate: NSDate?
+    public var maximumDate: NSDate?
+    public init() {
+        
+    }
 }
 
 //MARK:- PickerView
-class PickerView: UIView {
+public class PickerView: UIView {
     private let screenWidth = UIScreen.mainScreen().bounds.size.width
     private let pickerViewHeight = 216.0
     private let toolBarHeight = 44.0
-    enum PickerStyles {
+    public enum PickerStyles {
         case Single
         case Multiple
         case MultipleAssociated
         case Date
     }
-    weak var delegate: PickerViewDelegate?
+    public weak var delegate: PickerViewDelegate?
     private var toolBarTitle = "请选择" {
         didSet {
             toolBar.title = toolBarTitle
@@ -75,11 +77,11 @@ class PickerView: UIView {
         }
     }
     // 完成按钮的响应Closure
-    typealias BtnAction = () -> Void
-    typealias SingleDoneAction = (selectedIndex: Int, selectedValue: String) -> Void
-    typealias MultipleDoneAction = (selectedIndexs: [Int], selectedValues: [String]) -> Void
-    typealias DateDoneAction = (selectedDate: NSDate) -> Void
-    typealias MultipleAssociatedDataType = [[[String: [String]?]]]
+    public typealias BtnAction = () -> Void
+    public typealias SingleDoneAction = (selectedIndex: Int, selectedValue: String) -> Void
+    public typealias MultipleDoneAction = (selectedIndexs: [Int], selectedValues: [String]) -> Void
+    public typealias DateDoneAction = (selectedDate: NSDate) -> Void
+    public typealias MultipleAssociatedDataType = [[[String: [String]?]]]
 
     private var cancelAction: BtnAction? = nil {
         didSet {
@@ -128,7 +130,7 @@ class PickerView: UIView {
     
     
     //MARK:- 有多列不关联的时候用到的属性
-    var multipleDoneOnClick:MultipleDoneAction? = nil {
+    private var multipleDoneOnClick:MultipleDoneAction? = nil {
         didSet {
             
             toolBar.doneAction =  {[unowned self] in
@@ -307,19 +309,19 @@ class PickerView: UIView {
     private lazy var toolBar: ToolBarView! = ToolBarView()
     
     //MARK:- 初始化
-    init(pickerStyle: PickerStyles) {
+    public init(pickerStyle: PickerStyles) {
         let frame = CGRect(x: 0.0, y: 0.0, width: Double(screenWidth), height: toolBarHeight + pickerViewHeight)
         self.pickerStyle = pickerStyle
         super.init(frame: frame)
         commonInit()
     }
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
@@ -345,7 +347,7 @@ class PickerView: UIView {
         selectedDate = datePic.date
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         toolBar.frame = CGRect(x: 0.0, y: 0.0, width: Double(screenWidth), height: toolBarHeight)
         if pickerStyle == PickerStyles.Date {
@@ -362,7 +364,7 @@ class PickerView: UIView {
 }
 //MARK: UIPickerViewDelegate, UIPickerViewDataSource
 extension PickerView: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    final public func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         
         switch pickerStyle {
         case .Single:
@@ -376,7 +378,7 @@ extension PickerView: UIPickerViewDelegate, UIPickerViewDataSource {
         
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    final public func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         switch pickerStyle {
         case .Single:
@@ -409,7 +411,7 @@ extension PickerView: UIPickerViewDelegate, UIPickerViewDataSource {
         
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    final public func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerStyle {
         case .Single:
             selectedIndex = row
@@ -437,7 +439,7 @@ extension PickerView: UIPickerViewDelegate, UIPickerViewDataSource {
         
     }
     
-    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+    final public func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
  
         var label = view as? UILabel
         // 使用重用的view
@@ -455,7 +457,7 @@ extension PickerView: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     // Helper
-    func titleForRow(row: Int, forComponent component: Int) -> String? {
+    private func titleForRow(row: Int, forComponent component: Int) -> String? {
         switch pickerStyle {
         case .Single:
             return singleColData?[row]
@@ -497,7 +499,7 @@ extension PickerView: UIPickerViewDelegate, UIPickerViewDataSource {
 extension PickerView {
     
     /// 单列
-    class func singleColPicker(toolBarTitle: String, singleColData: [String], defaultIndex: Int?,cancelAction: BtnAction?, doneAction: SingleDoneAction?) -> PickerView {
+    public class func singleColPicker(toolBarTitle: String, singleColData: [String], defaultIndex: Int?,cancelAction: BtnAction?, doneAction: SingleDoneAction?) -> PickerView {
         let pic = PickerView(pickerStyle: .Single)
         
         pic.toolBarTitle = toolBarTitle
@@ -511,7 +513,7 @@ extension PickerView {
     }
     
     /// 多列不关联
-    class func multipleCosPicker(toolBarTitle: String, multipleColsData: [[String]], defaultSelectedIndexs: [Int]?,cancelAction: BtnAction?, doneAction: MultipleDoneAction?) -> PickerView {
+    public class func multipleCosPicker(toolBarTitle: String, multipleColsData: [[String]], defaultSelectedIndexs: [Int]?,cancelAction: BtnAction?, doneAction: MultipleDoneAction?) -> PickerView {
         
         let pic = PickerView(pickerStyle: .Multiple)
         
@@ -525,7 +527,7 @@ extension PickerView {
     }
     
     /// 多列关联
-    class func multipleAssociatedCosPicker(toolBarTitle: String, multipleAssociatedColsData: MultipleAssociatedDataType, defaultSelectedValues: [String]?,cancelAction: BtnAction?, doneAction: MultipleDoneAction?) -> PickerView {
+    public class func multipleAssociatedCosPicker(toolBarTitle: String, multipleAssociatedColsData: MultipleAssociatedDataType, defaultSelectedValues: [String]?,cancelAction: BtnAction?, doneAction: MultipleDoneAction?) -> PickerView {
         
         let pic = PickerView(pickerStyle: .MultipleAssociated)
         
@@ -540,7 +542,7 @@ extension PickerView {
     
     /// 城市选择器
     
-    class func citiesPicker(toolBarTitle: String, defaultSelectedValues: [String]?, cancelAction: BtnAction?, doneAction: MultipleDoneAction?) -> PickerView {
+    public class func citiesPicker(toolBarTitle: String, defaultSelectedValues: [String]?, cancelAction: BtnAction?, doneAction: MultipleDoneAction?) -> PickerView {
         
         let provincePath = NSBundle.mainBundle().pathForResource("Province", ofType: "plist")
         let cityPath = NSBundle.mainBundle().pathForResource("City", ofType: "plist")
@@ -576,7 +578,7 @@ extension PickerView {
     }
     
     /// 时间选择器
-    class func datePicker(toolBarTitle: String, datePickerSetting: DatePickerSetting, cancelAction: BtnAction?, doneAction: DateDoneAction?) -> PickerView {
+    public class func datePicker(toolBarTitle: String, datePickerSetting: DatePickerSetting, cancelAction: BtnAction?, doneAction: DateDoneAction?) -> PickerView {
         
         let pic = PickerView(pickerStyle: .Date)
         pic.datePickerSetting = datePickerSetting

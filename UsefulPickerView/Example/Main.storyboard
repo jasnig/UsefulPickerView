@@ -42,14 +42,8 @@
                                     <segue destination="gi6-0l-NoD" kind="show" id="Buh-t9-G3u"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题不滚动的时候不要使用(缩放+遮盖)或(缩放+滚动条),其他效果之间可以组合!!,您可以大胆的去组合一下试试" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRK-uH-bul">
-                                <rect key="frame" x="15" y="313" width="570" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdU-ro-laa">
-                                <rect key="frame" x="15" y="369" width="570" height="82"/>
+                                <rect key="frame" x="15" y="253" width="570" height="82"/>
                                 <string key="text">如果对您有帮助,不妨给个star鼓励一下 github: https://github.com/jasnig
 如果您在使用过程中发现问题,请联系qq:854136959或者发邮件到这个qq邮箱给我
 </string>
@@ -60,19 +54,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fRK-uH-bul" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="5Bw-Sw-yW2"/>
-                            <constraint firstItem="sdU-ro-laa" firstAttribute="trailing" secondItem="fRK-uH-bul" secondAttribute="trailing" id="8Vm-l5-H3g"/>
+                            <constraint firstItem="sdU-ro-laa" firstAttribute="top" secondItem="yBZ-42-bCJ" secondAttribute="bottom" constant="40" id="8C3-xQ-MQS"/>
                             <constraint firstItem="9BX-Ow-IQm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="8ux-oR-l0e"/>
                             <constraint firstAttribute="trailing" secondItem="9BX-Ow-IQm" secondAttribute="trailing" id="GnD-B9-cJr"/>
+                            <constraint firstAttribute="trailing" secondItem="sdU-ro-laa" secondAttribute="trailing" constant="15" id="QXn-gb-pvp"/>
                             <constraint firstItem="9BX-Ow-IQm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="UVj-38-dKp"/>
-                            <constraint firstItem="sdU-ro-laa" firstAttribute="top" secondItem="fRK-uH-bul" secondAttribute="bottom" constant="15" id="dEi-Is-cRD"/>
+                            <constraint firstItem="sdU-ro-laa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="aOQ-Ef-4fc"/>
                             <constraint firstItem="yBZ-42-bCJ" firstAttribute="top" secondItem="9BX-Ow-IQm" secondAttribute="bottom" constant="1" id="dgv-Xd-N9Z"/>
                             <constraint firstItem="yBZ-42-bCJ" firstAttribute="height" secondItem="9BX-Ow-IQm" secondAttribute="height" id="fem-oi-sfX"/>
-                            <constraint firstItem="fRK-uH-bul" firstAttribute="top" secondItem="yBZ-42-bCJ" secondAttribute="bottom" constant="100" id="jTe-B1-0oA"/>
-                            <constraint firstAttribute="trailing" secondItem="fRK-uH-bul" secondAttribute="trailing" constant="15" id="jt8-L8-cqw"/>
                             <constraint firstItem="yBZ-42-bCJ" firstAttribute="leading" secondItem="9BX-Ow-IQm" secondAttribute="leading" id="trO-sT-zrx"/>
                             <constraint firstItem="yBZ-42-bCJ" firstAttribute="trailing" secondItem="9BX-Ow-IQm" secondAttribute="trailing" id="u6y-Wg-4yW"/>
-                            <constraint firstItem="sdU-ro-laa" firstAttribute="leading" secondItem="fRK-uH-bul" secondAttribute="leading" id="xCI-DG-jpE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="使用分类" id="sVx-7y-X4w"/>

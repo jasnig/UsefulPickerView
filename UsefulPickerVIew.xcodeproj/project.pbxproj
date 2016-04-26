@@ -9,22 +9,22 @@
 /* Begin PBXBuildFile section */
 		4B0BCC161CCE6A1B0000FE60 /* UsefulPickerVIewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BCC151CCE6A1B0000FE60 /* UsefulPickerVIewTests.swift */; };
 		4B0BCC211CCE6A1B0000FE60 /* UsefulPickerVIewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BCC201CCE6A1B0000FE60 /* UsefulPickerVIewUITests.swift */; };
-		4B0BCC4F1CCE6C360000FE60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BCC461CCE6C360000FE60 /* AppDelegate.swift */; };
-		4B0BCC501CCE6C360000FE60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BCC471CCE6C360000FE60 /* Assets.xcassets */; };
-		4B0BCC511CCE6C360000FE60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BCC481CCE6C360000FE60 /* LaunchScreen.storyboard */; };
-		4B0BCC521CCE6C360000FE60 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BCC4A1CCE6C360000FE60 /* Info.plist */; };
-		4B0BCC531CCE6C360000FE60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BCC4B1CCE6C360000FE60 /* Main.storyboard */; };
-		4B0BCC541CCE6C360000FE60 /* Vc1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BCC4C1CCE6C360000FE60 /* Vc1Controller.swift */; };
-		4B0BCC551CCE6C360000FE60 /* Vc2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BCC4D1CCE6C360000FE60 /* Vc2Controller.swift */; };
-		4B0BCC561CCE6C360000FE60 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BCC4E1CCE6C360000FE60 /* ViewController.swift */; };
-		4B6FC6C21CCE8BAB00CFFEA9 /* Area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B6FC6BA1CCE8BAB00CFFEA9 /* Area.plist */; };
-		4B6FC6C31CCE8BAB00CFFEA9 /* City.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B6FC6BB1CCE8BAB00CFFEA9 /* City.plist */; };
-		4B6FC6C41CCE8BAB00CFFEA9 /* Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6FC6BC1CCE8BAB00CFFEA9 /* Picker.swift */; };
-		4B6FC6C51CCE8BAB00CFFEA9 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6FC6BD1CCE8BAB00CFFEA9 /* PickerView.swift */; };
-		4B6FC6C61CCE8BAB00CFFEA9 /* Province.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B6FC6BE1CCE8BAB00CFFEA9 /* Province.plist */; };
-		4B6FC6C71CCE8BAB00CFFEA9 /* SelectionTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6FC6BF1CCE8BAB00CFFEA9 /* SelectionTextField.swift */; };
-		4B6FC6C81CCE8BAB00CFFEA9 /* ToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6FC6C01CCE8BAB00CFFEA9 /* ToolBarView.swift */; };
-		4B6FC6C91CCE8BAB00CFFEA9 /* UsefulPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6FC6C11CCE8BAB00CFFEA9 /* UsefulPickerView.swift */; };
+		4B494B901CCF871700B23680 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B494B881CCF871700B23680 /* AppDelegate.swift */; };
+		4B494B911CCF871700B23680 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B494B891CCF871700B23680 /* Assets.xcassets */; };
+		4B494B921CCF871700B23680 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B494B8A1CCF871700B23680 /* LaunchScreen.storyboard */; };
+		4B494B931CCF871700B23680 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B494B8C1CCF871700B23680 /* Main.storyboard */; };
+		4B494B941CCF871700B23680 /* Vc1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B494B8D1CCF871700B23680 /* Vc1Controller.swift */; };
+		4B494B951CCF871700B23680 /* Vc2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B494B8E1CCF871700B23680 /* Vc2Controller.swift */; };
+		4B494B961CCF871700B23680 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B494B8F1CCF871700B23680 /* ViewController.swift */; };
+		4B494BA21CCF878700B23680 /* Area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B494B9A1CCF878700B23680 /* Area.plist */; };
+		4B494BA31CCF878700B23680 /* City.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B494B9B1CCF878700B23680 /* City.plist */; };
+		4B494BA41CCF878700B23680 /* Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B494B9C1CCF878700B23680 /* Picker.swift */; };
+		4B494BA51CCF878700B23680 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B494B9D1CCF878700B23680 /* PickerView.swift */; };
+		4B494BA61CCF878700B23680 /* Province.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B494B9E1CCF878700B23680 /* Province.plist */; };
+		4B494BA71CCF878700B23680 /* SelectionTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B494B9F1CCF878700B23680 /* SelectionTextField.swift */; };
+		4B494BA81CCF878700B23680 /* ToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B494BA01CCF878700B23680 /* ToolBarView.swift */; };
+		4B494BA91CCF878700B23680 /* UsefulPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B494BA11CCF878700B23680 /* UsefulPickerView.swift */; };
+		4B6FC6CB1CCF03CA00CFFEA9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B6FC6CA1CCF03CA00CFFEA9 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,22 +52,22 @@
 		4B0BCC1C1CCE6A1B0000FE60 /* UsefulPickerVIewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UsefulPickerVIewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B0BCC201CCE6A1B0000FE60 /* UsefulPickerVIewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsefulPickerVIewUITests.swift; sourceTree = "<group>"; };
 		4B0BCC221CCE6A1B0000FE60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4B0BCC461CCE6C360000FE60 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4B0BCC471CCE6C360000FE60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4B0BCC491CCE6C360000FE60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		4B0BCC4A1CCE6C360000FE60 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4B0BCC4B1CCE6C360000FE60 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		4B0BCC4C1CCE6C360000FE60 /* Vc1Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vc1Controller.swift; sourceTree = "<group>"; };
-		4B0BCC4D1CCE6C360000FE60 /* Vc2Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vc2Controller.swift; sourceTree = "<group>"; };
-		4B0BCC4E1CCE6C360000FE60 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4B6FC6BA1CCE8BAB00CFFEA9 /* Area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Area.plist; sourceTree = "<group>"; };
-		4B6FC6BB1CCE8BAB00CFFEA9 /* City.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = City.plist; sourceTree = "<group>"; };
-		4B6FC6BC1CCE8BAB00CFFEA9 /* Picker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Picker.swift; sourceTree = "<group>"; };
-		4B6FC6BD1CCE8BAB00CFFEA9 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
-		4B6FC6BE1CCE8BAB00CFFEA9 /* Province.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Province.plist; sourceTree = "<group>"; };
-		4B6FC6BF1CCE8BAB00CFFEA9 /* SelectionTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionTextField.swift; sourceTree = "<group>"; };
-		4B6FC6C01CCE8BAB00CFFEA9 /* ToolBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarView.swift; sourceTree = "<group>"; };
-		4B6FC6C11CCE8BAB00CFFEA9 /* UsefulPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsefulPickerView.swift; sourceTree = "<group>"; };
+		4B494B881CCF871700B23680 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4B494B891CCF871700B23680 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4B494B8B1CCF871700B23680 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4B494B8C1CCF871700B23680 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		4B494B8D1CCF871700B23680 /* Vc1Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vc1Controller.swift; sourceTree = "<group>"; };
+		4B494B8E1CCF871700B23680 /* Vc2Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vc2Controller.swift; sourceTree = "<group>"; };
+		4B494B8F1CCF871700B23680 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4B494B9A1CCF878700B23680 /* Area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Area.plist; sourceTree = "<group>"; };
+		4B494B9B1CCF878700B23680 /* City.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = City.plist; sourceTree = "<group>"; };
+		4B494B9C1CCF878700B23680 /* Picker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Picker.swift; sourceTree = "<group>"; };
+		4B494B9D1CCF878700B23680 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		4B494B9E1CCF878700B23680 /* Province.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Province.plist; sourceTree = "<group>"; };
+		4B494B9F1CCF878700B23680 /* SelectionTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionTextField.swift; sourceTree = "<group>"; };
+		4B494BA01CCF878700B23680 /* ToolBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarView.swift; sourceTree = "<group>"; };
+		4B494BA11CCF878700B23680 /* UsefulPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsefulPickerView.swift; sourceTree = "<group>"; };
+		4B6FC6CA1CCF03CA00CFFEA9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = UsefulPickerView/Info.plist; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,8 +118,9 @@
 		4B0BCBFF1CCE6A1B0000FE60 /* UsefulPickerVIew */ = {
 			isa = PBXGroup;
 			children = (
-				4B6FC6B91CCE8BAB00CFFEA9 /* UsefulPickerView */,
-				4B0BCC451CCE6C360000FE60 /* Example */,
+				4B6FC6CA1CCF03CA00CFFEA9 /* Info.plist */,
+				4B494B991CCF878700B23680 /* Source */,
+				4B494B871CCF871700B23680 /* Example */,
 			);
 			path = UsefulPickerVIew;
 			sourceTree = "<group>";
@@ -142,36 +143,51 @@
 			path = UsefulPickerVIewUITests;
 			sourceTree = "<group>";
 		};
-		4B0BCC451CCE6C360000FE60 /* Example */ = {
+		4B494B871CCF871700B23680 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				4B0BCC461CCE6C360000FE60 /* AppDelegate.swift */,
-				4B0BCC471CCE6C360000FE60 /* Assets.xcassets */,
-				4B0BCC481CCE6C360000FE60 /* LaunchScreen.storyboard */,
-				4B0BCC4A1CCE6C360000FE60 /* Info.plist */,
-				4B0BCC4B1CCE6C360000FE60 /* Main.storyboard */,
-				4B0BCC4C1CCE6C360000FE60 /* Vc1Controller.swift */,
-				4B0BCC4D1CCE6C360000FE60 /* Vc2Controller.swift */,
-				4B0BCC4E1CCE6C360000FE60 /* ViewController.swift */,
+				4B494B881CCF871700B23680 /* AppDelegate.swift */,
+				4B494B891CCF871700B23680 /* Assets.xcassets */,
+				4B494B8A1CCF871700B23680 /* LaunchScreen.storyboard */,
+				4B494B8C1CCF871700B23680 /* Main.storyboard */,
+				4B494BAA1CCF879C00B23680 /* 按钮使用示例 */,
+				4B494BAB1CCF87AD00B23680 /* TextField使用示例 */,
+				4B494B8F1CCF871700B23680 /* ViewController.swift */,
 			);
-			path = Example;
+			name = Example;
+			path = UsefulPickerView/Example;
+			sourceTree = SOURCE_ROOT;
+		};
+		4B494B991CCF878700B23680 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				4B494B9A1CCF878700B23680 /* Area.plist */,
+				4B494B9B1CCF878700B23680 /* City.plist */,
+				4B494B9E1CCF878700B23680 /* Province.plist */,
+				4B494B9C1CCF878700B23680 /* Picker.swift */,
+				4B494B9D1CCF878700B23680 /* PickerView.swift */,
+				4B494B9F1CCF878700B23680 /* SelectionTextField.swift */,
+				4B494BA01CCF878700B23680 /* ToolBarView.swift */,
+				4B494BA11CCF878700B23680 /* UsefulPickerView.swift */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
-		4B6FC6B91CCE8BAB00CFFEA9 /* UsefulPickerView */ = {
+		4B494BAA1CCF879C00B23680 /* 按钮使用示例 */ = {
 			isa = PBXGroup;
 			children = (
-				4B6FC6BA1CCE8BAB00CFFEA9 /* Area.plist */,
-				4B6FC6BB1CCE8BAB00CFFEA9 /* City.plist */,
-				4B6FC6BC1CCE8BAB00CFFEA9 /* Picker.swift */,
-				4B6FC6BD1CCE8BAB00CFFEA9 /* PickerView.swift */,
-				4B6FC6BE1CCE8BAB00CFFEA9 /* Province.plist */,
-				4B6FC6BF1CCE8BAB00CFFEA9 /* SelectionTextField.swift */,
-				4B6FC6C01CCE8BAB00CFFEA9 /* ToolBarView.swift */,
-				4B6FC6C11CCE8BAB00CFFEA9 /* UsefulPickerView.swift */,
+				4B494B8D1CCF871700B23680 /* Vc1Controller.swift */,
 			);
-			name = UsefulPickerView;
-			path = UsefulPickerView/UsefulPickerView;
-			sourceTree = SOURCE_ROOT;
+			name = "按钮使用示例";
+			sourceTree = "<group>";
+		};
+		4B494BAB1CCF87AD00B23680 /* TextField使用示例 */ = {
+			isa = PBXGroup;
+			children = (
+				4B494B8E1CCF871700B23680 /* Vc2Controller.swift */,
+			);
+			name = "TextField使用示例";
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -277,13 +293,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B6FC6C21CCE8BAB00CFFEA9 /* Area.plist in Resources */,
-				4B6FC6C31CCE8BAB00CFFEA9 /* City.plist in Resources */,
-				4B6FC6C61CCE8BAB00CFFEA9 /* Province.plist in Resources */,
-				4B0BCC531CCE6C360000FE60 /* Main.storyboard in Resources */,
-				4B0BCC521CCE6C360000FE60 /* Info.plist in Resources */,
-				4B0BCC501CCE6C360000FE60 /* Assets.xcassets in Resources */,
-				4B0BCC511CCE6C360000FE60 /* LaunchScreen.storyboard in Resources */,
+				4B494BA21CCF878700B23680 /* Area.plist in Resources */,
+				4B494BA31CCF878700B23680 /* City.plist in Resources */,
+				4B494BA61CCF878700B23680 /* Province.plist in Resources */,
+				4B494B921CCF871700B23680 /* LaunchScreen.storyboard in Resources */,
+				4B494B911CCF871700B23680 /* Assets.xcassets in Resources */,
+				4B6FC6CB1CCF03CA00CFFEA9 /* Info.plist in Resources */,
+				4B494B931CCF871700B23680 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,15 +324,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B0BCC4F1CCE6C360000FE60 /* AppDelegate.swift in Sources */,
-				4B6FC6C71CCE8BAB00CFFEA9 /* SelectionTextField.swift in Sources */,
-				4B6FC6C81CCE8BAB00CFFEA9 /* ToolBarView.swift in Sources */,
-				4B0BCC561CCE6C360000FE60 /* ViewController.swift in Sources */,
-				4B6FC6C91CCE8BAB00CFFEA9 /* UsefulPickerView.swift in Sources */,
-				4B6FC6C51CCE8BAB00CFFEA9 /* PickerView.swift in Sources */,
-				4B0BCC541CCE6C360000FE60 /* Vc1Controller.swift in Sources */,
-				4B6FC6C41CCE8BAB00CFFEA9 /* Picker.swift in Sources */,
-				4B0BCC551CCE6C360000FE60 /* Vc2Controller.swift in Sources */,
+				4B494B941CCF871700B23680 /* Vc1Controller.swift in Sources */,
+				4B494BA71CCF878700B23680 /* SelectionTextField.swift in Sources */,
+				4B494BA81CCF878700B23680 /* ToolBarView.swift in Sources */,
+				4B494B901CCF871700B23680 /* AppDelegate.swift in Sources */,
+				4B494BA91CCF878700B23680 /* UsefulPickerView.swift in Sources */,
+				4B494BA51CCF878700B23680 /* PickerView.swift in Sources */,
+				4B494B961CCF871700B23680 /* ViewController.swift in Sources */,
+				4B494BA41CCF878700B23680 /* Picker.swift in Sources */,
+				4B494B951CCF871700B23680 /* Vc2Controller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,10 +368,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		4B0BCC481CCE6C360000FE60 /* LaunchScreen.storyboard */ = {
+		4B494B8A1CCF871700B23680 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				4B0BCC491CCE6C360000FE60 /* Base */,
+				4B494B8B1CCF871700B23680 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

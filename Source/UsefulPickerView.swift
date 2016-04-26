@@ -30,14 +30,14 @@
 
 import UIKit
 
-class UsefulPickerView: UIView {
+public class UsefulPickerView: UIView {
 
-    typealias BtnAction = () -> Void
-    typealias SingleDoneAction = (selectedIndex: Int, selectedValue: String) -> Void
-    typealias MultipleDoneAction = (selectedIndexs: [Int], selectedValues: [String]) -> Void
-    typealias DateDoneAction = (selectedDate: NSDate) -> Void
+    public typealias BtnAction = () -> Void
+    public typealias SingleDoneAction = (selectedIndex: Int, selectedValue: String) -> Void
+    public typealias MultipleDoneAction = (selectedIndexs: [Int], selectedValues: [String]) -> Void
+    public typealias DateDoneAction = (selectedDate: NSDate) -> Void
 
-    typealias MultipleAssociatedDataType = [[[String: [String]?]]]
+    public typealias MultipleAssociatedDataType = [[[String: [String]?]]]
     
     private var pickerView: PickerView!
     //MARK:- 常量
@@ -181,7 +181,7 @@ class UsefulPickerView: UIView {
         }
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -233,7 +233,7 @@ extension UsefulPickerView {
     ///  - parameter doneAction:                 响应完成的Closure
     ///
     ///  - returns:
-    class func showSingleColPicker(toolBarTitle: String, data: [String], defaultSelectedIndex: Int?,  doneAction: SingleDoneAction?) {
+    public class func showSingleColPicker(toolBarTitle: String, data: [String], defaultSelectedIndex: Int?,  doneAction: SingleDoneAction?) {
         let window = UIApplication.sharedApplication().keyWindow
         guard let currentWindow = window else { return }
         
@@ -251,7 +251,7 @@ extension UsefulPickerView {
     ///  - parameter doneAction:                 响应完成的Closure
     ///
     ///  - returns:
-    class func showMultipleColsPicker(toolBarTitle: String, data: [[String]], defaultSelectedIndexs: [Int]?,doneAction: MultipleDoneAction?) {
+    public class func showMultipleColsPicker(toolBarTitle: String, data: [[String]], defaultSelectedIndexs: [Int]?,doneAction: MultipleDoneAction?) {
         let window = UIApplication.sharedApplication().keyWindow
         guard let currentWindow = window else { return }
         
@@ -269,7 +269,7 @@ extension UsefulPickerView {
     ///  - parameter doneAction:                 响应完成的Closure
     ///
     ///  - returns:
-    class func showMultipleAssociatedColsPicker(toolBarTitle: String, data: MultipleAssociatedDataType, defaultSelectedValues: [String]?, doneAction: MultipleDoneAction?) {
+    public class func showMultipleAssociatedColsPicker(toolBarTitle: String, data: MultipleAssociatedDataType, defaultSelectedValues: [String]?, doneAction: MultipleDoneAction?) {
         let window = UIApplication.sharedApplication().keyWindow
         guard let currentWindow = window else { return }
         
@@ -287,7 +287,7 @@ extension UsefulPickerView {
     ///  - parameter doneAction:                 响应完成的Closure
     ///
     ///  - returns:
-    class func showCitiesPicker(toolBarTitle: String, defaultSelectedValues: [String]?, doneAction: MultipleDoneAction?) {
+    public class func showCitiesPicker(toolBarTitle: String, defaultSelectedValues: [String]?, doneAction: MultipleDoneAction?) {
         
         let window = UIApplication.sharedApplication().keyWindow
         guard let currentWindow = window else { return }
@@ -305,7 +305,7 @@ extension UsefulPickerView {
     ///  - parameter doneAction:                 响应完成的Closure
     ///
     ///  - returns:
-    class func showDatePicker(toolBarTitle: String, datePickerSetting: DatePickerSetting = DatePickerSetting(), doneAction: DateDoneAction?) {
+    public class func showDatePicker(toolBarTitle: String, datePickerSetting: DatePickerSetting = DatePickerSetting(), doneAction: DateDoneAction?) {
         
         let window = UIApplication.sharedApplication().keyWindow
         guard let currentWindow = window else { return }

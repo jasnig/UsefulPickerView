@@ -42,7 +42,16 @@ class Vc2Controller: UIViewController {
     @IBOutlet weak var selectedDataLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // 代码生成
+        let test = SelectionTextField(frame: CGRect(x: 20, y: 340, width: 340, height: 28))
+        test.borderStyle = .RoundedRect
+        test.placeholder = "代码初始化"
+        test.showSingleColPicker("测试代码", data: singleData, defaultSelectedIndex: 0, autoSetSelectedText: true) { (textField, selectedIndex, selectedValue) in
+            print(selectedValue)
+        }
+        view.addSubview(test)
+        
         singleTextField.showSingleColPicker("编程语言选择", data: singleData, defaultSelectedIndex: 2, autoSetSelectedText: true) {[unowned self] (textField, selectedIndex, selectedValue) in
             //  可以使用textField 也可以使用 self.singleTextField
             textField.text = "选中了第\(selectedIndex)行----选中的数据为\(selectedValue)"
@@ -51,7 +60,7 @@ class Vc2Controller: UIViewController {
         }
         
         
-        multipleTextField.showMultipleColsPicker("持续时间选择", data: multipleData, defaultSelectedIndexs: [0,1,1], autoSetSelectedText: true) {[unowned self] (textField, selectedIndexs, selectedValues) in
+        multipleTextField.showMultipleColsPicker("持续时间选择", data: multipleData, defaultSelectedIndexs: [0,1,1], autoSetSelectedText: true) { [unowned self] (textField, selectedIndexs, selectedValues) in
             self.multipleTextField.text = "选中了第\(selectedIndexs)行----选中的数据为\(selectedValues)"
             
         }
@@ -90,6 +99,8 @@ class Vc2Controller: UIViewController {
             let string = formatter.stringFromDate(selectedDate)
             textField.text = string
         }
+        
+
     }
 
     override func didReceiveMemoryWarning() {
