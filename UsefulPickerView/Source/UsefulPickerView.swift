@@ -57,9 +57,10 @@ public class UsefulPickerView: UIView {
     
     // MARK:- 初始化
     // 单列
-    init(frame: CGRect, toolBarTitle: String, singleColData: [String], defaultSelectedIndex: Int?, doneAction: SingleDoneAction?) {
+    convenience init(frame: CGRect, toolBarTitle: String, singleColData: [String], defaultSelectedIndex: Int?, doneAction: SingleDoneAction?) {
 
-        super.init(frame: frame)
+        self.init(frame: frame)
+        
         
         
         pickerView = PickerView.singleColPicker(toolBarTitle, singleColData: singleColData, defaultIndex: defaultSelectedIndex, cancelAction: {[unowned self] in
@@ -79,12 +80,10 @@ public class UsefulPickerView: UIView {
         addGestureRecognizer(tap)
     
     }
-    
-    
     // 多列不关联
-    init(frame: CGRect, toolBarTitle: String, multipleColsData: [[String]], defaultSelectedIndexs: [Int]?, doneAction: MultipleDoneAction?) {
+    convenience init(frame: CGRect, toolBarTitle: String, multipleColsData: [[String]], defaultSelectedIndexs: [Int]?, doneAction: MultipleDoneAction?) {
         
-        super.init(frame: frame)
+        self.init(frame: frame)
         
         pickerView = PickerView.multipleCosPicker(toolBarTitle, multipleColsData: multipleColsData, defaultSelectedIndexs: defaultSelectedIndexs, cancelAction: {[unowned self] in
             // 点击取消的时候移除
@@ -102,12 +101,10 @@ public class UsefulPickerView: UIView {
         addGestureRecognizer(tap)
         
     }
-    
     // 多列关联
-
-    init(frame: CGRect, toolBarTitle: String, multipleAssociatedColsData: MultipleAssociatedDataType, defaultSelectedValues: [String]?, doneAction: MultipleDoneAction?) {
+    convenience init(frame: CGRect, toolBarTitle: String, multipleAssociatedColsData: MultipleAssociatedDataType, defaultSelectedValues: [String]?, doneAction: MultipleDoneAction?) {
         
-        super.init(frame: frame)
+        self.init(frame: frame)
         
         pickerView = PickerView.multipleAssociatedCosPicker(toolBarTitle, multipleAssociatedColsData: multipleAssociatedColsData, defaultSelectedValues: defaultSelectedValues, cancelAction: {[unowned self] in
             // 点击取消的时候移除
@@ -126,11 +123,10 @@ public class UsefulPickerView: UIView {
         addGestureRecognizer(tap)
         
     }
-    
     // 城市选择器
-    init(frame: CGRect, toolBarTitle: String, defaultSelectedValues: [String]?, doneAction: MultipleDoneAction?) {
+    convenience init(frame: CGRect, toolBarTitle: String, defaultSelectedValues: [String]?, doneAction: MultipleDoneAction?) {
         
-        super.init(frame: frame)
+        self.init(frame: frame)
         
         pickerView = PickerView.citiesPicker(toolBarTitle, defaultSelectedValues: defaultSelectedValues,  cancelAction: {[unowned self] in
             // 点击取消的时候移除
@@ -149,11 +145,10 @@ public class UsefulPickerView: UIView {
         addGestureRecognizer(tap)
         
     }
-    
     // 日期选择器
-    init(frame: CGRect, toolBarTitle: String, datePickerSetting: DatePickerSetting, doneAction: DateDoneAction?) {
+    convenience init(frame: CGRect, toolBarTitle: String, datePickerSetting: DatePickerSetting, doneAction: DateDoneAction?) {
         
-        super.init(frame: frame)
+        self.init(frame: frame)
         
         pickerView = PickerView.datePicker(toolBarTitle, datePickerSetting: datePickerSetting, cancelAction:  {[unowned self] in
             // 点击取消的时候移除
@@ -173,6 +168,35 @@ public class UsefulPickerView: UIView {
         
     }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addOrentationObserver()
+    }
+
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        print("\(self.debugDescription) --- 销毁")
+    }
+    
+
+}
+
+// MARK:- selector
+extension UsefulPickerView {
+    
+    private func addOrentationObserver() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.statusBarOrientationChange), name: UIApplicationDidChangeStatusBarOrientationNotification, object: nil)
+        
+    }
+    // 屏幕旋转时移除pickerView
+    func statusBarOrientationChange() {
+        removeFromSuperview()
+    }
     func tapAction(tap: UITapGestureRecognizer) {
         let location = tap.locationInView(self)
         // 点击空白背景移除self
@@ -180,16 +204,6 @@ public class UsefulPickerView: UIView {
             self.hidePicker()
         }
     }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    deinit {
-        print("\(self.debugDescription) --- 销毁")
-    }
-    
-
 }
 
 // MARK:- 弹出和移除self
@@ -201,6 +215,15 @@ extension UsefulPickerView {
         guard let currentWindow = window else { return }
         currentWindow.addSubview(self)
 
+//        let pickerX = NSLayoutConstraint(item: self, attribute: .Leading, relatedBy: .Equal, toItem: currentWindow, attribute: .Leading, multiplier: 1.0, constant: 0.0)
+//        
+//        let pickerY = NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: currentWindow, attribute: .Top, multiplier: 1.0, constant: 0.0)
+//        let pickerW = NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: currentWindow, attribute: .Width, multiplier: 1.0, constant: 0.0)
+//        let pickerH = NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: currentWindow, attribute: .Height, multiplier: 1.0, constant: 0.0)
+//        self.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        currentWindow.addConstraints([pickerX, pickerY, pickerW, pickerH])
+        
         UIView.animateWithDuration(0.25, animations: {[unowned self] in
             self.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.1)
             self.pickerView.frame = self.showFrame
