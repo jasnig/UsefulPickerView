@@ -301,6 +301,7 @@ public class PickerView: UIView {
     
     private lazy var datePicker: UIDatePicker = {[unowned self] in
         let datePic = UIDatePicker()
+        datePic.backgroundColor = UIColor.whiteColor()
         //        print(NSLocale.availableLocaleIdentifiers())
         datePic.locale = NSLocale(localeIdentifier: "zh_CN")
         return datePic
@@ -349,13 +350,45 @@ public class PickerView: UIView {
     
     override public func layoutSubviews() {
         super.layoutSubviews()
-        toolBar.frame = CGRect(x: 0.0, y: 0.0, width: Double(screenWidth), height: toolBarHeight)
+        
+        let toolBarX = NSLayoutConstraint(item: toolBar, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0.0)
+        
+        let toolBarY = NSLayoutConstraint(item: toolBar, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 0.0)
+        let toolBarW = NSLayoutConstraint(item: toolBar, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1.0, constant: 0.0)
+        let toolBarH = NSLayoutConstraint(item: toolBar, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: CGFloat(toolBarHeight))
+        toolBar.translatesAutoresizingMaskIntoConstraints = false
+        
+        addConstraints([toolBarX, toolBarY, toolBarW, toolBarH])
+
+        
+        
+
+        // 改用了autolayout
+        
+//        toolBar.frame = CGRect(x: 0.0, y: 0.0, width: Double(screenWidth), height: toolBarHeight)
         if pickerStyle == PickerStyles.Date {
             
-            datePicker.frame = CGRect(x: 0.0, y: toolBarHeight, width: Double(screenWidth), height: pickerViewHeight)
-        } else {
-            pickerView.frame = CGRect(x: 0.0, y: toolBarHeight, width: Double(screenWidth), height: pickerViewHeight)
+//            datePicker.frame = CGRect(x: 0.0, y: toolBarHeight, width: Double(screenWidth), height: pickerViewHeight)
             
+            let pickerX = NSLayoutConstraint(item: datePicker, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0.0)
+            
+            let pickerY = NSLayoutConstraint(item: datePicker, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: CGFloat(toolBarHeight))
+            let pickerW = NSLayoutConstraint(item: datePicker, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1.0, constant: 0.0)
+            let pickerH = NSLayoutConstraint(item: datePicker, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: CGFloat(pickerViewHeight))
+            datePicker.translatesAutoresizingMaskIntoConstraints = false
+            addConstraints([pickerX, pickerY, pickerW, pickerH])
+        } else {
+//            pickerView.frame = CGRect(x: 0.0, y: toolBarHeight, width: Double(screenWidth), height: pickerViewHeight)
+            
+            let pickerX = NSLayoutConstraint(item: pickerView, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0.0)
+            
+            let pickerY = NSLayoutConstraint(item: pickerView, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: CGFloat(toolBarHeight))
+            let pickerW = NSLayoutConstraint(item: pickerView, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1.0, constant: 0.0)
+            let pickerH = NSLayoutConstraint(item: pickerView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: CGFloat(pickerViewHeight))
+            pickerView.translatesAutoresizingMaskIntoConstraints = false
+
+            addConstraints([pickerX, pickerY, pickerW, pickerH])
+
         }
 
     }
@@ -441,19 +474,15 @@ extension PickerView: UIPickerViewDelegate, UIPickerViewDataSource {
     
     final public func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
  
-        var label = view as? UILabel
-        // 使用重用的view
-        if label == nil {
-            label = UILabel()
-            label!.textAlignment = .Center
-            label!.adjustsFontSizeToFitWidth = true
-            label!.textColor = UIColor.blackColor()
-            label!.font = UIFont.systemFontOfSize(18.0)
-            label!.backgroundColor = UIColor.clearColor()
-        }
+        let label = UILabel()
+        label.textAlignment = .Center
+        label.adjustsFontSizeToFitWidth = true
+        label.textColor = UIColor.blackColor()
+        label.font = UIFont.systemFontOfSize(18.0)
+        label.backgroundColor = UIColor.clearColor()
 
-        label!.text = titleForRow(row, forComponent: component)
-        return label!
+        label.text = titleForRow(row, forComponent: component)
+        return label
     }
     
     // Helper

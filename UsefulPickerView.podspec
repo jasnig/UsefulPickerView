@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = "UsefulPickerView"
-  s.version     = "0.1.1"
+  s.version     = "0.1.2"
   s.summary     = "UsefulPickerView is written in Swift and it is useful."
   s.homepage    = "https://github.com/jasnig/UsefulPickerView"
   s.license     = { :type => "MIT" }
