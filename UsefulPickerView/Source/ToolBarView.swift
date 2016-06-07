@@ -46,7 +46,7 @@ public class ToolBarView: UIView {
     // 用来产生上下分割线的效果
     private lazy var contentView: UIView = {
         let content = UIView()
-        content.backgroundColor = UIColor.whiteColor()
+        content.backgroundColor = UIColor(red:238/255, green:238/255, blue: 238/255, alpha: 1)
         return content
     }()
     // 文本框
@@ -61,15 +61,17 @@ public class ToolBarView: UIView {
     private lazy var cancleBtn: UIButton = {
         let btn = UIButton()
         btn.setTitle("取消", forState: .Normal)
-        btn.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        btn.setTitleColor(UIColor(red:150/255, green:150/255, blue: 150/255, alpha: 1), forState: .Normal)
+        btn.titleLabel?.font = UIFont.systemFontOfSize(15)
         return btn
     }()
     
     // 完成按钮
     private lazy var doneBtn: UIButton = {
         let donebtn = UIButton()
-        donebtn.setTitle("完成", forState: .Normal)
-        donebtn.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        donebtn.setTitle("确认", forState: .Normal)
+        donebtn.setTitleColor(UIColor(red:238/255, green:82/255, blue: 36/255, alpha: 1), forState: .Normal)
+        donebtn.titleLabel?.font = UIFont.systemFontOfSize(15)
         return donebtn
     }()
     
