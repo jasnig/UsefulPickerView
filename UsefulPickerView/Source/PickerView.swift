@@ -42,7 +42,9 @@ public struct DatePickerSetting {
     
     public var date = NSDate()
     public var dateMode = UIDatePickerMode.Date
+    //最小时间
     public var minimumDate: NSDate?
+    // 最大时间
     public var maximumDate: NSDate?
     public init() {
         
@@ -451,18 +453,24 @@ extension PickerView: UIPickerViewDelegate, UIPickerViewDataSource {
             selectedValue = singleColData![row]
         case .Multiple:
             selectedIndexs[component] = row
-            selectedValues[component] = titleForRow(row, forComponent: component) ?? " "
+            if let title = titleForRow(row, forComponent: component) {
+                selectedValues[component] = title
+            }
         case .MultipleAssociated:
             // 设置选中值
-            selectedValues[component] = titleForRow(row, forComponent: component) ?? " "
-            selectedIndexs[component] = row
-            // 更新下一列关联的值
-            if component < multipleAssociatedColsData!.count {
-                pickerView.reloadComponent(component + 1)
-                // 递归
-                self.pickerView(pickerView, didSelectRow: 0, inComponent: component+1)
-                pickerView.selectRow(0, inComponent: component+1, animated: true)
-                
+            
+            if let title = titleForRow(row, forComponent: component) {
+                selectedValues[component] = title
+                selectedIndexs[component] = row
+                // 更新下一列关联的值
+                if component < multipleAssociatedColsData!.count {
+                    pickerView.reloadComponent(component + 1)
+                    // 递归
+                    self.pickerView(pickerView, didSelectRow: 0, inComponent: component+1)
+                    pickerView.selectRow(0, inComponent: component+1, animated: true)
+                    
+                }
+
             }
             
             

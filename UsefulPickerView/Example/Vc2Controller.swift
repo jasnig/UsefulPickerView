@@ -86,7 +86,8 @@ class Vc2Controller: UIViewController {
             let string = formatter.stringFromDate(selectedDate)
             textField.text = string
         }
-        
+        ///          ///  @author ZeroJ, 16-04-25 17:04:28
+        // style里面可以更改的和系统的DatePicker属性是一一对应的
         var dateStyle = DatePickerSetting()
         dateStyle.dateMode = .Time
         

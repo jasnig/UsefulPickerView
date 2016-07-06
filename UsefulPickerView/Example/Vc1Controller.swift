@@ -87,7 +87,7 @@ class Vc1Controller: UIViewController {
     }
     @IBAction func citiesBtnOnClick(sender: UIButton) {
         
-        UsefulPickerView.showCitiesPicker("省市区选择", defaultSelectedValues: ["四川", "成都", "郫县"]) {[unowned self] (selectedIndexs, selectedValues) in
+        UsefulPickerView.showCitiesPicker("省市区选择", defaultSelectedValues: ["北京", "通州"]) {[unowned self] (selectedIndexs, selectedValues) in
             // 处理数据
             let combinedString = selectedValues.reduce("", combine: { (result, value) -> String in
                 result + " " + value
@@ -111,11 +111,11 @@ class Vc1Controller: UIViewController {
     }
     
     @IBAction func timeBtnOnClick(sender: UIButton) {
+        ///          ///  @author ZeroJ, 16-04-25 17:04:28
+        // style里面可以更改的和系统的DatePicker属性是一一对应的
         var dateStyle = DatePickerSetting()
         dateStyle.dateMode = .Time
         
-        ///          ///  @author ZeroJ, 16-04-25 17:04:28
-        /// 注意使用这种方式的时候, 请设置 autoSetSelectedText = false, 否则显示的格式可能不是您需要的
         UsefulPickerView.showDatePicker("时间选择", datePickerSetting: dateStyle) { (selectedDate) in
             let formatter = NSDateFormatter()
             // H -> 24小时制
