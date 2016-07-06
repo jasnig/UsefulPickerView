@@ -170,13 +170,16 @@ public class PickerView: UIView {
                     if component < pickerView.numberOfComponents && row < pickerView.numberOfRowsInComponent(component){
                         
                         // 滚动到默认位置
-                        pickerView.selectRow(row, inComponent: component, animated: false)
                         
                         // 设置默认值
                         selectedIndexs[component] = row
                         selectedValues[component] = titleForRow(row, forComponent: component) ?? " "
                         
-                        
+                        dispatch_async(dispatch_get_main_queue(), {
+                            
+                            self.pickerView.selectRow(row, inComponent: component, animated: false)
+                        })
+
                     }
                     
                 })
@@ -217,8 +220,8 @@ public class PickerView: UIView {
         didSet {
             
             if let defaultValues = defaultSelectedValues {
-                // 设置默认值
-                selectedValues = defaultValues
+                // this is a wrong way cause defaultValues is less than components' count
+//                selectedValues = defaultValues
                 defaultValues.enumerate().forEach { (component: Int, element: String) in
                     var row: Int? = nil
 
@@ -238,7 +241,7 @@ public class PickerView: UIView {
                         
                         for associatedModel in associatedModels {
 
-                            if associatedModel.first!.0 == selectedValues[component - 1] {
+                            if associatedModel.first!.0 == defaultValues[component - 1] {
                                 arr = associatedModel.first!.1
                                 break
                             }
@@ -254,14 +257,21 @@ public class PickerView: UIView {
                     }
                     if component < pickerView.numberOfComponents {
                         //                        print(" \(component) ----\(row!)")
-                        // 滚动到默认的位置
-                        pickerView.selectRow(row!, inComponent: component, animated: false)
+                        
                         // 设置选中的下标
                         selectedIndexs[component] = row!
-                        
+                        // 设置默认值
+                        selectedValues[component] = titleForRow(row!, forComponent: component) ?? " "
+                        // 滚动到默认的位置
+                        dispatch_async(dispatch_get_main_queue(), { 
+                            
+                            self.pickerView.selectRow(row!, inComponent: component, animated: false)
+                        })
+
                     }
                     
                 }
+                
                 
             } else {
                 for index in 0...multipleAssociatedColsData!.count {
@@ -343,7 +353,6 @@ public class PickerView: UIView {
 
         } else {
             addSubview(pickerView)
- 
         }
     }
     func dateDidChange(datePic: UIDatePicker) {

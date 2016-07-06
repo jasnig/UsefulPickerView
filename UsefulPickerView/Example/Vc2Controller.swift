@@ -73,7 +73,8 @@ class Vc2Controller: UIViewController {
 
         }
         
-        
+        // 注意设置默认值得时候, 必须设置完整, 不能进行省略 ["四川", "成都", "成华区"] 比如不能设置为["四川", "成都"]
+        // ["北京", "通州"] 不能设置为["北京"]
         citiesTextField.showCitiesPicker("省市区选择", defaultSelectedValues: ["四川", "成都", "郫县"], autoSetSelectedText: false) {[unowned self] (textField, selectedIndexs, selectedValues) in
             self.citiesTextField.text = "选中了第\(selectedIndexs)行----选中的数据为\(selectedValues)"
             self.selectedDataLabel.text = "选中了第\(selectedIndexs)行----选中的数据为\(selectedValues)"
