@@ -90,14 +90,17 @@ class Vc2Controller: UIViewController {
         ///          ///  @author ZeroJ, 16-04-25 17:04:28
         // style里面可以更改的和系统的DatePicker属性是一一对应的
         var dateStyle = DatePickerSetting()
-        dateStyle.dateMode = .Time
-        
+        dateStyle.dateMode = .Date
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let date = formatter.dateFromString("2000-01-11")
+        dateStyle.date = date!
         ///          ///  @author ZeroJ, 16-04-25 17:04:28
         /// 注意使用这种方式的时候, 请设置 autoSetSelectedText = false, 否则显示的格式可能不是您需要的
         timeTextField.showDatePicker("时间选择", datePickerSetting: dateStyle, autoSetSelectedText: false) { (textField, selectedDate) in
             let formatter = NSDateFormatter()
             // H -> 24小时制
-            formatter.dateFormat = "HH: mm"
+            formatter.dateFormat = "yyyy-MM-dd"
             let string = formatter.stringFromDate(selectedDate)
             textField.text = string
         }

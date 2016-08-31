@@ -76,6 +76,8 @@ public class PickerView: UIView {
             datePicker.minimumDate = datePickerSetting.minimumDate
             datePicker.maximumDate = datePickerSetting.maximumDate
             datePicker.datePickerMode = datePickerSetting.dateMode
+            /// set currentDate
+            selectedDate = datePickerSetting.date
         }
     }
     // 完成按钮的响应Closure
