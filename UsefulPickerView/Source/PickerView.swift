@@ -39,7 +39,7 @@ public protocol PickerViewDelegate: class {
 
 //MARK:- 配置UIDatePicker的样式
 public struct DatePickerSetting {
-    
+    /// 默认选中时间
     public var date = NSDate()
     public var dateMode = UIDatePickerMode.Date
     //最小时间
@@ -76,7 +76,7 @@ public class PickerView: UIView {
             datePicker.minimumDate = datePickerSetting.minimumDate
             datePicker.maximumDate = datePickerSetting.maximumDate
             datePicker.datePickerMode = datePickerSetting.dateMode
-            /// set currentDate
+            /// set currentDate to the default
             selectedDate = datePickerSetting.date
         }
     }
