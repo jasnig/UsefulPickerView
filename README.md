@@ -78,8 +78,9 @@ pod 'UsefulPickerView', '~> 0.1.2'
 
 
 
-####如果对您有帮助,请随手给个star鼓励一下 
 
+####如果对你有帮助,请随手给个star 
+####如果你在使用中遇到问题: 可以联系我QQ: 854136959
 ## License
 
 UsefulPickerView is released under the MIT license. See LICENSE for details.
