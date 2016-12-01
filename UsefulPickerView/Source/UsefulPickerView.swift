@@ -124,7 +124,7 @@ open class UsefulPickerView: UIView {
         
     }
     // 城市选择器
-    convenience init(frame: CGRect, toolBarTitle: String, defaultSelectedValues: [String]?, doneAction: MultipleDoneAction?) {
+  convenience init(frame: CGRect, toolBarTitle: String, defaultSelectedValues: [String]?, doneAction: MultipleDoneAction?, selectTopLevel: Bool = false) {
         
         self.init(frame: frame)
         
@@ -135,7 +135,7 @@ open class UsefulPickerView: UIView {
             }, doneAction: {[unowned self] (selectedIndexs, selectedValues) in
                 doneAction?(selectedIndexs, selectedValues)
                 self.hidePicker()
-        })
+        }, selectTopLevel: selectTopLevel)
         
         pickerView.frame = hideFrame
         addSubview(pickerView)
@@ -309,13 +309,13 @@ extension UsefulPickerView {
     ///  - parameter doneAction:                 响应完成的Closure
     ///
     ///  - returns:
-    public class func showCitiesPicker(_ toolBarTitle: String, defaultSelectedValues: [String]?, doneAction: MultipleDoneAction?) {
+    public class func showCitiesPicker(_ toolBarTitle: String, defaultSelectedValues: [String]?, selectTopLevel: Bool=false, doneAction: MultipleDoneAction?) {
         
         let window = UIApplication.shared.keyWindow
         guard let currentWindow = window else { return }
         
-        let testView = UsefulPickerView(frame: currentWindow.bounds, toolBarTitle: toolBarTitle, defaultSelectedValues: defaultSelectedValues, doneAction: doneAction)
-        
+      let testView = UsefulPickerView(frame: currentWindow.bounds, toolBarTitle: toolBarTitle, defaultSelectedValues: defaultSelectedValues, doneAction: doneAction, selectTopLevel: selectTopLevel)
+      
         testView.showPicker()
         
     }

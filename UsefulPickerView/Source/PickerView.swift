@@ -590,7 +590,7 @@ extension PickerView {
     
     /// 城市选择器
     
-    public class func citiesPicker(_ toolBarTitle: String, defaultSelectedValues: [String]?, cancelAction: BtnAction?, doneAction: MultipleDoneAction?) -> PickerView {
+  public class func citiesPicker(_ toolBarTitle: String, defaultSelectedValues: [String]?, cancelAction: BtnAction?, doneAction: MultipleDoneAction?, selectTopLevel:Bool = false) -> PickerView {
         
         let provincePath = Bundle.main.path(forResource: "Province", ofType: "plist")
         let cityPath = Bundle.main.path(forResource: "City", ofType: "plist")
@@ -606,13 +606,25 @@ extension PickerView {
         proviceArr?.forEach({ (element) in
             if let provinceStr = element as? String {
                 
-                let cities = cityArr?[provinceStr] as? [String]
+                var cities = cityArr?[provinceStr] as? [String]
+                if selectTopLevel {
+                  cities?.insert("/", at: 0)
+                }
                 citiesModelArr.append([provinceStr: cities])
                 
                 cities?.forEach({ (city) in
-                    let areas = areaArr?[city]as? [String]
-                    areasModelArr.append([city: areas])
-                    
+                    if city == "/" {
+                      areasModelArr.append([city: ["/"]])
+                    }
+                    else {
+                      var areas = areaArr?[city]as? [String]
+                      
+                      if selectTopLevel {
+                        areas!.insert("/", at: 0)
+                      }
+                      areasModelArr.append([city: areas])
+                    }
+                  
                 })
             }
         })

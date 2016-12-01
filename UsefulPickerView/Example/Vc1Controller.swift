@@ -88,7 +88,7 @@ class Vc1Controller: UIViewController {
     @IBAction func citiesBtnOnClick(_ sender: UIButton) {
         // 注意设置默认值得时候, 必须设置完整, 不能进行省略 ["四川", "成都", "成华区"] 比如不能设置为["四川", "成都"]
         // ["北京", "通州"] 不能设置为["北京"]
-        UsefulPickerView.showCitiesPicker("省市区选择", defaultSelectedValues: ["四川", "成都", "郫县"]) {[unowned self] (selectedIndexs, selectedValues) in
+        UsefulPickerView.showCitiesPicker("省市区选择", defaultSelectedValues: ["北京", "/", "/"], selectTopLevel: true) {[unowned self] (selectedIndexs, selectedValues) in
             // 处理数据
             let combinedString = selectedValues.reduce("", { (result, value) -> String in
                 result + " " + value
