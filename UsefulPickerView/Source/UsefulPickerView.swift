@@ -30,25 +30,25 @@
 
 import UIKit
 
-public class UsefulPickerView: UIView {
+open class UsefulPickerView: UIView {
 
     public typealias BtnAction = () -> Void
-    public typealias SingleDoneAction = (selectedIndex: Int, selectedValue: String) -> Void
-    public typealias MultipleDoneAction = (selectedIndexs: [Int], selectedValues: [String]) -> Void
-    public typealias DateDoneAction = (selectedDate: NSDate) -> Void
+    public typealias SingleDoneAction = (_ selectedIndex: Int, _ selectedValue: String) -> Void
+    public typealias MultipleDoneAction = (_ selectedIndexs: [Int], _ selectedValues: [String]) -> Void
+    public typealias DateDoneAction = (_ selectedDate: Date) -> Void
 
     public typealias MultipleAssociatedDataType = [[[String: [String]?]]]
     
-    private var pickerView: PickerView!
+    fileprivate var pickerView: PickerView!
     //MARK:- 常量
-    private let pickerViewHeight:CGFloat = 260.0
+    fileprivate let pickerViewHeight:CGFloat = 260.0
     
-    private let screenWidth = UIScreen.mainScreen().bounds.size.width
-    private let screenHeight = UIScreen.mainScreen().bounds.size.height
-    private var hideFrame: CGRect {
+    fileprivate let screenWidth = UIScreen.main.bounds.size.width
+    fileprivate let screenHeight = UIScreen.main.bounds.size.height
+    fileprivate var hideFrame: CGRect {
         return CGRect(x: 0.0, y: screenHeight, width: screenWidth, height: pickerViewHeight)
     }
-    private var showFrame: CGRect {
+    fileprivate var showFrame: CGRect {
         return CGRect(x: 0.0, y: screenHeight - pickerViewHeight, width: screenWidth, height: pickerViewHeight)
     }
     
@@ -68,7 +68,7 @@ public class UsefulPickerView: UIView {
                 self.hidePicker()
 
             }, doneAction: {[unowned self] (selectedIndex, selectedValue) in
-                doneAction?(selectedIndex: selectedIndex, selectedValue: selectedValue)
+                doneAction?(selectedIndex, selectedValue)
                 self.hidePicker()
 
         })
@@ -90,7 +90,7 @@ public class UsefulPickerView: UIView {
                 self.hidePicker()
             
             }, doneAction: {[unowned self] (selectedIndexs, selectedValues) in
-                doneAction?(selectedIndexs: selectedIndexs, selectedValues: selectedValues)
+                doneAction?(selectedIndexs, selectedValues)
                 self.hidePicker()
         })
         pickerView.frame = hideFrame
@@ -111,7 +111,7 @@ public class UsefulPickerView: UIView {
                 self.hidePicker()
             
             }, doneAction: {[unowned self] (selectedIndexs, selectedValues) in
-                doneAction?(selectedIndexs: selectedIndexs, selectedValues: selectedValues)
+                doneAction?(selectedIndexs, selectedValues)
                 self.hidePicker()
         })
                                                   
@@ -133,7 +133,7 @@ public class UsefulPickerView: UIView {
                 self.hidePicker()
             
             }, doneAction: {[unowned self] (selectedIndexs, selectedValues) in
-                doneAction?(selectedIndexs: selectedIndexs, selectedValues: selectedValues)
+                doneAction?(selectedIndexs, selectedValues)
                 self.hidePicker()
         })
         
@@ -155,7 +155,7 @@ public class UsefulPickerView: UIView {
             self.hidePicker()
             
             }, doneAction: {[unowned self] (selectedDate) in
-                doneAction?(selectedDate: selectedDate)
+                doneAction?(selectedDate)
                 self.hidePicker()
         })
         
@@ -179,7 +179,7 @@ public class UsefulPickerView: UIView {
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         print("\(self.debugDescription) --- 销毁")
     }
     
@@ -189,16 +189,16 @@ public class UsefulPickerView: UIView {
 // MARK:- selector
 extension UsefulPickerView {
     
-    private func addOrentationObserver() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.statusBarOrientationChange), name: UIApplicationDidChangeStatusBarOrientationNotification, object: nil)
+    fileprivate func addOrentationObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.statusBarOrientationChange), name: NSNotification.Name.UIApplicationDidChangeStatusBarOrientation, object: nil)
         
     }
     // 屏幕旋转时移除pickerView
     func statusBarOrientationChange() {
         removeFromSuperview()
     }
-    func tapAction(tap: UITapGestureRecognizer) {
-        let location = tap.locationInView(self)
+    func tapAction(_ tap: UITapGestureRecognizer) {
+        let location = tap.location(in: self)
         // 点击空白背景移除self
         if location.y <= screenHeight - pickerViewHeight {
             self.hidePicker()
@@ -209,9 +209,9 @@ extension UsefulPickerView {
 // MARK:- 弹出和移除self
 extension UsefulPickerView {
     
-    private func showPicker() {
+    fileprivate func showPicker() {
         // 通过window 弹出view
-        let window = UIApplication.sharedApplication().keyWindow
+        let window = UIApplication.shared.keyWindow
         guard let currentWindow = window else { return }
         currentWindow.addSubview(self)
 
@@ -224,7 +224,7 @@ extension UsefulPickerView {
 //        
 //        currentWindow.addConstraints([pickerX, pickerY, pickerW, pickerH])
         
-        UIView.animateWithDuration(0.25, animations: {[unowned self] in
+        UIView.animate(withDuration: 0.25, animations: {[unowned self] in
             self.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.1)
             self.pickerView.frame = self.showFrame
         }, completion: nil)
@@ -234,13 +234,13 @@ extension UsefulPickerView {
     
     func hidePicker() {
         // 把self从window中移除
-        UIView.animateWithDuration(0.25, animations: { [unowned self] in
-            self.backgroundColor = UIColor.clearColor()
+        UIView.animate(withDuration: 0.25, animations: { [unowned self] in
+            self.backgroundColor = UIColor.clear
             self.pickerView.frame = self.hideFrame
 
-        }) {[unowned self] (_) in
+        }, completion: {[unowned self] (_) in
             self.removeFromSuperview()
-        }
+        }) 
     }
 }
 
@@ -255,8 +255,8 @@ extension UsefulPickerView {
     ///  - parameter doneAction:                 响应完成的Closure
     ///
     ///  - returns:
-    public class func showSingleColPicker(toolBarTitle: String, data: [String], defaultSelectedIndex: Int?,  doneAction: SingleDoneAction?) {
-        let window = UIApplication.sharedApplication().keyWindow
+    public class func showSingleColPicker(_ toolBarTitle: String, data: [String], defaultSelectedIndex: Int?,  doneAction: SingleDoneAction?) {
+        let window = UIApplication.shared.keyWindow
         guard let currentWindow = window else { return }
         
         let testView = UsefulPickerView(frame: currentWindow.bounds, toolBarTitle: toolBarTitle, singleColData: data,defaultSelectedIndex: defaultSelectedIndex ,doneAction: doneAction)
@@ -273,8 +273,8 @@ extension UsefulPickerView {
     ///  - parameter doneAction:                 响应完成的Closure
     ///
     ///  - returns:
-    public class func showMultipleColsPicker(toolBarTitle: String, data: [[String]], defaultSelectedIndexs: [Int]?,doneAction: MultipleDoneAction?) {
-        let window = UIApplication.sharedApplication().keyWindow
+    public class func showMultipleColsPicker(_ toolBarTitle: String, data: [[String]], defaultSelectedIndexs: [Int]?,doneAction: MultipleDoneAction?) {
+        let window = UIApplication.shared.keyWindow
         guard let currentWindow = window else { return }
         
         let testView = UsefulPickerView(frame: currentWindow.bounds, toolBarTitle: toolBarTitle, multipleColsData: data, defaultSelectedIndexs: defaultSelectedIndexs, doneAction: doneAction)
@@ -291,8 +291,8 @@ extension UsefulPickerView {
     ///  - parameter doneAction:                 响应完成的Closure
     ///
     ///  - returns:
-    public class func showMultipleAssociatedColsPicker(toolBarTitle: String, data: MultipleAssociatedDataType, defaultSelectedValues: [String]?, doneAction: MultipleDoneAction?) {
-        let window = UIApplication.sharedApplication().keyWindow
+    public class func showMultipleAssociatedColsPicker(_ toolBarTitle: String, data: MultipleAssociatedDataType, defaultSelectedValues: [String]?, doneAction: MultipleDoneAction?) {
+        let window = UIApplication.shared.keyWindow
         guard let currentWindow = window else { return }
         
         let testView = UsefulPickerView(frame: currentWindow.bounds, toolBarTitle: toolBarTitle, multipleAssociatedColsData: data, defaultSelectedValues: defaultSelectedValues, doneAction: doneAction)
@@ -309,9 +309,9 @@ extension UsefulPickerView {
     ///  - parameter doneAction:                 响应完成的Closure
     ///
     ///  - returns:
-    public class func showCitiesPicker(toolBarTitle: String, defaultSelectedValues: [String]?, doneAction: MultipleDoneAction?) {
+    public class func showCitiesPicker(_ toolBarTitle: String, defaultSelectedValues: [String]?, doneAction: MultipleDoneAction?) {
         
-        let window = UIApplication.sharedApplication().keyWindow
+        let window = UIApplication.shared.keyWindow
         guard let currentWindow = window else { return }
         
         let testView = UsefulPickerView(frame: currentWindow.bounds, toolBarTitle: toolBarTitle, defaultSelectedValues: defaultSelectedValues, doneAction: doneAction)
@@ -327,9 +327,9 @@ extension UsefulPickerView {
     ///  - parameter doneAction:                 响应完成的Closure
     ///
     ///  - returns:
-    public class func showDatePicker(toolBarTitle: String, datePickerSetting: DatePickerSetting = DatePickerSetting(), doneAction: DateDoneAction?) {
+    public class func showDatePicker(_ toolBarTitle: String, datePickerSetting: DatePickerSetting = DatePickerSetting(), doneAction: DateDoneAction?) {
         
-        let window = UIApplication.sharedApplication().keyWindow
+        let window = UIApplication.shared.keyWindow
         guard let currentWindow = window else { return }
         
         let testView = UsefulPickerView(frame: currentWindow.bounds, toolBarTitle: toolBarTitle, datePickerSetting: datePickerSetting, doneAction: doneAction)

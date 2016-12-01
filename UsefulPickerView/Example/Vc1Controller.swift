@@ -60,14 +60,14 @@ class Vc1Controller: UIViewController {
     @IBOutlet weak var selectedDataLabel: UILabel!
     
     
-    @IBAction func singleBtnOnClick(sender: UIButton) {
+    @IBAction func singleBtnOnClick(_ sender: UIButton) {
         
         UsefulPickerView.showSingleColPicker("编程语言选择", data: singleData, defaultSelectedIndex: 2) {[unowned self] (selectedIndex, selectedValue) in
             self.selectedDataLabel.text = "选中了第\(selectedIndex)行----选中的数据为\(selectedValue)"
         }
         
     }
-    @IBAction func multipleBtnOnClick(sender: UIButton) {
+    @IBAction func multipleBtnOnClick(_ sender: UIButton) {
         
         
         UsefulPickerView.showMultipleColsPicker("持续时间选择", data: multipleData, defaultSelectedIndexs: [0,1,1]) {[unowned self] (selectedIndexs, selectedValues) in
@@ -76,7 +76,7 @@ class Vc1Controller: UIViewController {
         }
         
     }
-    @IBAction func multipleAssociatedBtnOnClick(sender: UIButton) {
+    @IBAction func multipleAssociatedBtnOnClick(_ sender: UIButton) {
         
         // 注意这里设置的是默认的选中值, 而不是选中的下标,省得去数关联数组里的下标
         UsefulPickerView.showMultipleAssociatedColsPicker("多列关联数据", data: multipleAssociatedData, defaultSelectedValues: ["交通工具","陆地","自行车"]) {[unowned self] (selectedIndexs, selectedValues) in
@@ -85,12 +85,12 @@ class Vc1Controller: UIViewController {
         }
         
     }
-    @IBAction func citiesBtnOnClick(sender: UIButton) {
+    @IBAction func citiesBtnOnClick(_ sender: UIButton) {
         // 注意设置默认值得时候, 必须设置完整, 不能进行省略 ["四川", "成都", "成华区"] 比如不能设置为["四川", "成都"]
         // ["北京", "通州"] 不能设置为["北京"]
         UsefulPickerView.showCitiesPicker("省市区选择", defaultSelectedValues: ["四川", "成都", "郫县"]) {[unowned self] (selectedIndexs, selectedValues) in
             // 处理数据
-            let combinedString = selectedValues.reduce("", combine: { (result, value) -> String in
+            let combinedString = selectedValues.reduce("", { (result, value) -> String in
                 result + " " + value
             })
             
@@ -98,30 +98,30 @@ class Vc1Controller: UIViewController {
             
         }
     }
-    @IBAction func dateBtnOnClick(sender: UIButton) {
+    @IBAction func dateBtnOnClick(_ sender: UIButton) {
         
         
         UsefulPickerView.showDatePicker("日期选择") {[unowned self] ( selectedDate) in
-            let formatter = NSDateFormatter()
+            let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd"
-            let string = formatter.stringFromDate(selectedDate)
+            let string = formatter.string(from: selectedDate)
             self.selectedDataLabel.text = "选中了的日期是\(string)"
         }
         
 
     }
     
-    @IBAction func timeBtnOnClick(sender: UIButton) {
+    @IBAction func timeBtnOnClick(_ sender: UIButton) {
         ///          ///  @author ZeroJ, 16-04-25 17:04:28
         // style里面可以更改的和系统的DatePicker属性是一一对应的
         var dateStyle = DatePickerSetting()
-        dateStyle.dateMode = .Time
+        dateStyle.dateMode = .time
         
         UsefulPickerView.showDatePicker("时间选择", datePickerSetting: dateStyle) { (selectedDate) in
-            let formatter = NSDateFormatter()
+            let formatter = DateFormatter()
             // H -> 24小时制
             formatter.dateFormat = "HH: mm"
-            let string = formatter.stringFromDate(selectedDate)
+            let string = formatter.string(from: selectedDate)
             self.selectedDataLabel.text = "选中了的日期是\(string)"
         }
     }
