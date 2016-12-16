@@ -45,7 +45,7 @@ class Vc2Controller: UIViewController {
         
         // 代码生成
         let test = SelectionTextField(frame: CGRect(x: 20, y: 340, width: 340, height: 28))
-        test.borderStyle = .RoundedRect
+        test.borderStyle = .roundedRect
         test.placeholder = "代码初始化"
         test.showSingleColPicker("测试代码", data: singleData, defaultSelectedIndex: 0, autoSetSelectedText: true) { (textField, selectedIndex, selectedValue) in
             print(selectedValue)
@@ -82,26 +82,26 @@ class Vc2Controller: UIViewController {
         }
         
         dateTextField.showDatePicker("日期选择", autoSetSelectedText: true) { (textField, selectedDate) in
-            let formatter = NSDateFormatter()
+            let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd"
-            let string = formatter.stringFromDate(selectedDate)
+            let string = formatter.string(from: selectedDate)
             textField.text = string
         }
         ///          ///  @author ZeroJ, 16-04-25 17:04:28
         // style里面可以更改的和系统的DatePicker属性是一一对应的
         var dateStyle = DatePickerSetting()
-        dateStyle.dateMode = .Date
-        let formatter = NSDateFormatter()
+        dateStyle.dateMode = .date
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        let date = formatter.dateFromString("2000-01-11")
+        let date = formatter.date(from: "2000-01-11")
         dateStyle.date = date!
         ///          ///  @author ZeroJ, 16-04-25 17:04:28
         /// 注意使用这种方式的时候, 请设置 autoSetSelectedText = false, 否则显示的格式可能不是您需要的
         timeTextField.showDatePicker("时间选择", datePickerSetting: dateStyle, autoSetSelectedText: false) { (textField, selectedDate) in
-            let formatter = NSDateFormatter()
+            let formatter = DateFormatter()
             // H -> 24小时制
             formatter.dateFormat = "yyyy-MM-dd"
-            let string = formatter.stringFromDate(selectedDate)
+            let string = formatter.string(from: selectedDate)
             textField.text = string
         }
         
