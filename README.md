@@ -1,7 +1,7 @@
-#UsefulPickerView
+# UsefulPickerView
 
 
-##使用示例效果
+## 使用示例效果
 
 
 ![TextField使用示例.gif](http://upload-images.jianshu.io/upload_images/1271831-4d7f9d232c035146.gif?imageMogr2/auto-orient/strip)
@@ -24,7 +24,7 @@
 ## Installation
 
 ### CocoaPods
-####1.在你的项目Podfile里面添加下面的内容
+#### 1.在你的项目Podfile里面添加下面的内容
 
 source 'https://github.com/CocoaPods/Specs.git'
 
@@ -33,21 +33,21 @@ use_frameworks!
 
 pod 'UsefulPickerView', '~> 0.1.2'
 
-###2.终端中执行命令 pod install
-###3. 使用{Project}.xcworkspace打开项目
+### 2.终端中执行命令 pod install
+### 3. 使用{Project}.xcworkspace打开项目
 
 
 ---
-###或者直接下载,将下载文件的Scource文件夹下的文件拖进您的项目中就可以使用了
+### 或者直接下载,将下载文件的Scource文件夹下的文件拖进您的项目中就可以使用了
 ---
 
-###Usage
+### Usage
 ---
-###如果是使用cocoapods安装的需要在使用的文件中
-###import UsefulPickerView
+### 如果是使用cocoapods安装的需要在使用的文件中
+### import UsefulPickerView
 ---
 
-####1. TextField 使用, 可以使用xib或者代码初始化
+#### 1. TextField 使用, 可以使用xib或者代码初始化
 	        // 代码生成
         let test = SelectionTextField(frame: CGRect(x: 20, y: 340, width: 340, height: 28))
         test.borderStyle = .RoundedRect
@@ -66,7 +66,7 @@ pod 'UsefulPickerView', '~> 0.1.2'
 
 
 
-####2. 按钮使用.在点击事件的方法里面
+#### 2. 按钮使用.在点击事件的方法里面
 	        UsefulPickerView.showSingleColPicker("编程语言选择", data: singleData, defaultSelectedIndex: 2) {[unowned self] (selectedIndex, selectedValue) in
             self.selectedDataLabel.text = "选中了第\(selectedIndex)行----选中的数据为\(selectedValue)"
         }
@@ -79,7 +79,7 @@ pod 'UsefulPickerView', '~> 0.1.2'
 
 
 
-####如果你在使用中遇到问题: 可以通过[简书](http://www.jianshu.com/users/fb31a3d1ec30/latest_articles)私信给我
+#### 如果你在使用中遇到问题: 可以通过[简书](http://www.jianshu.com/users/fb31a3d1ec30/latest_articles)私信给我
 
 ## License
 
