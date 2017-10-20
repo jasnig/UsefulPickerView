@@ -187,7 +187,7 @@ open class UsefulPickerView: UIView {
 }
 
 // MARK:- selector
-extension UsefulPickerView {
+@objc extension UsefulPickerView {
     
     fileprivate func addOrentationObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.statusBarOrientationChange), name: NSNotification.Name.UIApplicationDidChangeStatusBarOrientation, object: nil)
