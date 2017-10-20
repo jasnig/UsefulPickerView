@@ -65,7 +65,7 @@ open class SelectionTextField: UITextField {
 }
 
 // MARK: - 监听通知
-extension SelectionTextField {
+@objc extension SelectionTextField {
     
     fileprivate func commonInit() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.didBeginEdit), name: NSNotification.Name.UITextFieldTextDidBeginEditing, object: self)

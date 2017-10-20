@@ -94,14 +94,6 @@ open class ToolBarView: UIView {
         cancleBtn.addTarget(self, action: #selector(self.cancelBtnOnClick(_:)), for: .touchUpInside)
     }
     
-    func doneBtnOnClick(_ sender: UIButton) {
-        doneAction?()
-    }
-    func cancelBtnOnClick(_ sender: UIButton) {
-        cancelAction?()
-        
-    }
-    
     override open func layoutSubviews() {
         super.layoutSubviews()
         let margin = 15.0
@@ -119,4 +111,14 @@ open class ToolBarView: UIView {
     }
     
     
+}
+
+@objc extension ToolBarView {
+    func doneBtnOnClick(_ sender: UIButton) {
+        doneAction?()
+    }
+    func cancelBtnOnClick(_ sender: UIButton) {
+        cancelAction?()
+        
+    }
 }

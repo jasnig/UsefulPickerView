@@ -357,7 +357,7 @@ open class PickerView: UIView {
             addSubview(pickerView)
         }
     }
-    func dateDidChange(_ datePic: UIDatePicker) {
+    @objc func dateDidChange(_ datePic: UIDatePicker) {
         selectedDate = datePic.date
     }
     
