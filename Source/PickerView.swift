@@ -591,10 +591,11 @@ extension PickerView {
     /// 城市选择器
     
   public class func citiesPicker(_ toolBarTitle: String, defaultSelectedValues: [String]?, cancelAction: BtnAction?, doneAction: MultipleDoneAction?, selectTopLevel:Bool = false) -> PickerView {
-        
-        let provincePath = Bundle.main.path(forResource: "Province", ofType: "plist")
-        let cityPath = Bundle.main.path(forResource: "City", ofType: "plist")
-        let areaPath = Bundle.main.path(forResource: "Area", ofType: "plist")
+    
+        let bundleUrl = Bundle(for: self).url(forResource: "UsefulPickerView", withExtension: "bundle")
+        let provincePath = Bundle(url: bundleUrl!)?.path(forResource: "Province", ofType: "plist")
+        let cityPath = Bundle(url: bundleUrl!)?.path(forResource: "City", ofType: "plist")
+        let areaPath = Bundle(url: bundleUrl!)?.path(forResource: "Area", ofType: "plist")
         // 这里需要使用数组, 因为字典无序, 如果只使用 cityArr,areaArr, 那么显示将是无序的, 不能按照plist中的数组显示
         let proviceArr = NSArray(contentsOfFile: provincePath!)
         let cityArr = NSDictionary(contentsOfFile: cityPath!)
