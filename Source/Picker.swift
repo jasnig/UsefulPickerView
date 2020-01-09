@@ -39,8 +39,8 @@ struct AssociatedDataModel {
 }
 
 class Picker: UIView {
-    let screenWidth = UIScreen.mainScreen().bounds.size.width
-    let screenHeight = UIScreen.mainScreen().bounds.size.height
+    let screenWidth = UIScreen.main.bounds.size.width
+    let screenHeight = UIScreen.main.bounds.size.height
     
     // 使用模型初始化数据示例
     let associatedData: [[AssociatedDataModel]] = [
@@ -72,37 +72,37 @@ class Picker: UIView {
 
     
     enum PickerStyles {
-        case Single
-        case Multiple
-        case MultipleAssociated
+        case single
+        case multiple
+        case multipleAssociated
     }
     
     
-    var pickerStyle: PickerStyles = .Single
+    var pickerStyle: PickerStyles = .single
     
     // 完成按钮的响应Closure
     typealias BtnAction = () -> Void
-    typealias SingleDoneAction = (selectedIndex: Int, selectedValue: String) -> Void
-    typealias MultipleDoneAction = (selectedIndexs: [Int], selectedValues: [String]) -> Void
+    typealias SingleDoneAction = (_ selectedIndex: Int, _ selectedValue: String) -> Void
+    typealias MultipleDoneAction = (_ selectedIndexs: [Int], _ selectedValues: [String]) -> Void
 
-    private var cancelAction: BtnAction? = nil {
+    fileprivate var cancelAction: BtnAction? = nil {
         didSet {
             tool.cancelAction = cancelAction
         }
     }
     //MARK:- 只有一列的时候用到的属性
-    private var singleDoneOnClick:SingleDoneAction? = nil {
+    fileprivate var singleDoneOnClick:SingleDoneAction? = nil {
         didSet {
             tool.doneAction =  {[unowned self] in
                 
-                self.singleDoneOnClick?(selectedIndex: self.selectedIndex, selectedValue: self.selectedValue)
+                self.singleDoneOnClick?(self.selectedIndex, self.selectedValue)
             }
         }
     }
     
-    private var defalultSelectedIndex: Int? = nil {
+    fileprivate var defalultSelectedIndex: Int? = nil {
         didSet {
-            if let defaultIndex = defalultSelectedIndex, singleData = singleColData {// 判断下标是否合法
+            if let defaultIndex = defalultSelectedIndex, let singleData = singleColData {// 判断下标是否合法
                 assert(defaultIndex >= 0 && defaultIndex < singleData.count, "设置的默认选中Index不合法")
                 if defaultIndex >= 0 && defaultIndex < singleData.count {
                     // 设置默认值
@@ -121,10 +121,10 @@ class Picker: UIView {
             }
         }
     }
-    private var singleColData: [String]? = nil
+    fileprivate var singleColData: [String]? = nil
     
-    private var selectedIndex: Int = 0
-    private var selectedValue: String = ""
+    fileprivate var selectedIndex: Int = 0
+    fileprivate var selectedValue: String = ""
     
     
     //MARK:- 有多列不关联的时候用到的属性
@@ -132,12 +132,12 @@ class Picker: UIView {
         didSet {
 
             tool.doneAction =  {[unowned self] in
-                self.multipleDoneOnClick?(selectedIndexs: self.selectedIndexs, selectedValues: self.selectedValues)
+                self.multipleDoneOnClick?(self.selectedIndexs, self.selectedValues)
             }
         }
     }
     
-    private var multipleColsData: [[String]]? = nil {
+    fileprivate var multipleColsData: [[String]]? = nil {
         didSet {
             if let multipleData = multipleColsData {
                 for _ in multipleData.indices {
@@ -149,17 +149,17 @@ class Picker: UIView {
         }
     }
 
-    private var selectedIndexs: [Int] = []
-    private var selectedValues: [String] = []
+    fileprivate var selectedIndexs: [Int] = []
+    fileprivate var selectedValues: [String] = []
 
-    private var defalultSelectedIndexs: [Int]? = nil {
+    fileprivate var defalultSelectedIndexs: [Int]? = nil {
         didSet {
             if let defaultIndexs = defalultSelectedIndexs {
                 
-                defaultIndexs.enumerate().forEach({ (component: Int, row: Int) in
+                defaultIndexs.enumerated().forEach({ (component: Int, row: Int) in
                     
-                    assert(component < pickerView.numberOfComponents && row < pickerView.numberOfRowsInComponent(component), "设置的默认选中Indexs有不合法的")
-                    if component < pickerView.numberOfComponents && row < pickerView.numberOfRowsInComponent(component){
+                    assert(component < pickerView.numberOfComponents && row < pickerView.numberOfRows(inComponent: component), "设置的默认选中Indexs有不合法的")
+                    if component < pickerView.numberOfComponents && row < pickerView.numberOfRows(inComponent: component){
                         
                         // 滚动到默认位置
                         pickerView.selectRow(row, inComponent: component, animated: false)
@@ -192,7 +192,7 @@ class Picker: UIView {
     
     //MARK:- 有多列关联的时候用到的属性
 
-    private var multipleAssociatedColsData: [[AssociatedDataModel]]? = nil {
+    fileprivate var multipleAssociatedColsData: [[AssociatedDataModel]]? = nil {
         didSet {
             
             if let multipleAssociatedData = multipleAssociatedColsData {
@@ -206,17 +206,17 @@ class Picker: UIView {
     }
     
     // 设置第一组的数据, 使用数组是因为字典无序,需要设置默认选中值的时候获取到准确的下标滚动到相应的行
-    private var defaultSelectedValues: [String]? = nil {
+    fileprivate var defaultSelectedValues: [String]? = nil {
         didSet {
             
             if let defaultValues = defaultSelectedValues {
                 // 设置默认值
                 selectedValues = defaultValues
-                defaultValues.enumerate().forEach { (component: Int, element: String) in
+                defaultValues.enumerated().forEach { (component: Int, element: String) in
                     var row: Int? = nil
                     if component == 0 {
                         let firstData = multipleAssociatedColsData![0]
-                        for (index,associatedModel) in firstData.enumerate() {
+                        for (index,associatedModel) in firstData.enumerated() {
                             if associatedModel.key == element {
                                 row = index
                             }
@@ -232,7 +232,7 @@ class Picker: UIView {
                             }
                         }
                         
-                        row = arr?.indexOf(element)
+                        row = arr?.index(of: element)
                         
                     }
                     
@@ -268,20 +268,20 @@ class Picker: UIView {
     
     
     
-    private lazy var pickerView: UIPickerView! = { [unowned self] in
+    fileprivate lazy var pickerView: UIPickerView! = { [unowned self] in
         let picker = UIPickerView()
         picker.delegate = self
         picker.dataSource = self
-        picker.backgroundColor = UIColor.whiteColor()
+        picker.backgroundColor = UIColor.white
         return picker
     }()
     
-    private lazy var tool: ToolBarView! = ToolBarView()
+    fileprivate lazy var tool: ToolBarView! = ToolBarView()
     
-    private let pickerViewHeight = 216.0
-    private let toolBarHeight = 44.0
+    fileprivate let pickerViewHeight = 216.0
+    fileprivate let toolBarHeight = 44.0
     
-    let screenW = UIScreen.mainScreen().bounds.size.width
+    let screenW = UIScreen.main.bounds.size.width
     
     //MARK:- 初始化
     init() {
@@ -315,28 +315,28 @@ class Picker: UIView {
 }
 
 extension Picker: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         
         switch pickerStyle {
-            case .Single:
+            case .single:
                 return singleColData == nil ? 0 : 1
-            case .Multiple:
+            case .multiple:
                 return multipleColsData?.count ?? 0
-            case .MultipleAssociated:
+            case .multipleAssociated:
                 return multipleAssociatedColsData?.count ?? 0
             
         }
         
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         switch pickerStyle {
-            case .Single:
+            case .single:
                 return singleColData?.count ?? 0
-            case .Multiple:
+            case .multiple:
                 return multipleColsData?[component].count ?? 0
-            case .MultipleAssociated:
+            case .multipleAssociated:
                 if let multipleAssociatedData = multipleAssociatedColsData {
 
                     if component == 0 {
@@ -363,15 +363,15 @@ extension Picker: UIPickerViewDelegate, UIPickerViewDataSource {
         
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerStyle {
-            case .Single:
+            case .single:
                 selectedIndex = row
                 selectedValue = singleColData![row]
-            case .Multiple:
+            case .multiple:
                 selectedIndexs[component] = row
                 selectedValues[component] = self.pickerView(pickerView, titleForRow: row, forComponent: component) ?? " "
-            case .MultipleAssociated:
+            case .multipleAssociated:
                 // 设置选中值
                 selectedValues[component] = self.pickerView(pickerView, titleForRow: row, forComponent: component) ?? " "
                 selectedIndexs[component] = row
@@ -388,13 +388,13 @@ extension Picker: UIPickerViewDelegate, UIPickerViewDataSource {
         
         
     }
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerStyle {
-            case .Single:
+            case .single:
                 return singleColData?[row]
-            case .Multiple:
+            case .multiple:
                 return multipleColsData?[component][row]
-            case .MultipleAssociated:
+            case .multipleAssociated:
                 
                 if let multipleAssociatedData = multipleAssociatedColsData {
 
@@ -428,10 +428,10 @@ extension Picker: UIPickerViewDelegate, UIPickerViewDataSource {
 extension Picker {
     
     /// 单列
-    class func singleColPicker(singleColData: [String], defaultIndex: Int?,cancelAction: BtnAction?, doneAction: SingleDoneAction?) -> Picker {
+    class func singleColPicker(_ singleColData: [String], defaultIndex: Int?,cancelAction: BtnAction?, doneAction: SingleDoneAction?) -> Picker {
         let pic = Picker()
         
-        pic.pickerStyle = .Single
+        pic.pickerStyle = .single
         pic.singleColData = singleColData
         pic.defalultSelectedIndex = defaultIndex
         
@@ -442,11 +442,11 @@ extension Picker {
     }
     
     /// 多列不关联
-    class func multipleCosPicker(multipleColsData: [[String]], defaultSelectedIndexs: [Int]?,cancelAction: BtnAction?, doneAction: MultipleDoneAction?) -> Picker {
+    class func multipleCosPicker(_ multipleColsData: [[String]], defaultSelectedIndexs: [Int]?,cancelAction: BtnAction?, doneAction: MultipleDoneAction?) -> Picker {
         
         let pic = Picker()
         
-        pic.pickerStyle = .Multiple
+        pic.pickerStyle = .multiple
         
         pic.multipleColsData = multipleColsData
         pic.defalultSelectedIndexs = defaultSelectedIndexs
@@ -457,10 +457,10 @@ extension Picker {
     }
     
     /// 多列关联
-    class func multipleAssociatedCosPicker(multipleAssociatedColsData: [[AssociatedDataModel]], defaultSelectedValues: [String]?,cancelAction: BtnAction?, doneAction: MultipleDoneAction?) -> Picker {
+    class func multipleAssociatedCosPicker(_ multipleAssociatedColsData: [[AssociatedDataModel]], defaultSelectedValues: [String]?,cancelAction: BtnAction?, doneAction: MultipleDoneAction?) -> Picker {
         
         let pic = Picker()
-        pic.pickerStyle = .MultipleAssociated
+        pic.pickerStyle = .multipleAssociated
         pic.multipleAssociatedColsData = multipleAssociatedColsData
         
         pic.defaultSelectedValues = defaultSelectedValues
@@ -471,11 +471,12 @@ extension Picker {
     }
     
     /// 城市选择器
-    class func citiesPicker(defaultSelectedValues: [String]?, cancelAction: BtnAction?, doneAction: MultipleDoneAction?) -> Picker {
+    class func citiesPicker(_ defaultSelectedValues: [String]?, cancelAction: BtnAction?, doneAction: MultipleDoneAction?) -> Picker {
         
-        let provincePath = NSBundle.mainBundle().pathForResource("Province", ofType: "plist")
-        let cityPath = NSBundle.mainBundle().pathForResource("City", ofType: "plist")
-        let areaPath = NSBundle.mainBundle().pathForResource("Area", ofType: "plist")
+        
+        let provincePath = Bundle.main.path(forResource: "Province", ofType: "plist")
+        let cityPath = Bundle.main.path(forResource: "City", ofType: "plist")
+        let areaPath = Bundle.main.path(forResource: "Area", ofType: "plist")
         
         let proviceArr = NSArray(contentsOfFile: provincePath!)
         let cityArr = NSDictionary(contentsOfFile: cityPath!)

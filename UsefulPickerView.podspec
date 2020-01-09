@@ -11,5 +11,8 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "8.0"
   s.source   = { :git => "https://github.com/jasnig/UsefulPickerView.git", :tag => s.version }
   s.framework  = "UIKit"
-  s.source_files = "Source/*.swift","Source/*.plist"
+  s.source_files = "Source/*.swift"
+  s.resource_bundles = {
+    'UsefulPickerView' => ["Source/*.plist"]
+  }
 end

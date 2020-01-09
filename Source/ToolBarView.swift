@@ -30,46 +30,46 @@
 
 import UIKit
 
-public class ToolBarView: UIView {
+open class ToolBarView: UIView {
     
-    typealias CustomClosures = (titleLabel: UILabel, cancleBtn: UIButton, doneBtn: UIButton) -> Void
+    typealias CustomClosures = (_ titleLabel: UILabel, _ cancleBtn: UIButton, _ doneBtn: UIButton) -> Void
     public typealias BtnAction = () -> Void
     
-    public var title = "请选择" {
+    open var title = "请选择" {
         didSet {
             titleLabel.text = title
         }
     }
     
-    public var doneAction: BtnAction?
-    public var cancelAction: BtnAction?
+    open var doneAction: BtnAction?
+    open var cancelAction: BtnAction?
     // 用来产生上下分割线的效果
-    private lazy var contentView: UIView = {
+    fileprivate lazy var contentView: UIView = {
         let content = UIView()
-        content.backgroundColor = UIColor.whiteColor()
+        content.backgroundColor = UIColor.white
         return content
     }()
     // 文本框
-    private lazy var titleLabel: UILabel = {
+    fileprivate lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.blackColor()
-        label.textAlignment = .Center
+        label.textColor = UIColor.black
+        label.textAlignment = .center
         return label
     }()
     
     // 取消按钮
-    private lazy var cancleBtn: UIButton = {
+    fileprivate lazy var cancleBtn: UIButton = {
         let btn = UIButton()
-        btn.setTitle("取消", forState: .Normal)
-        btn.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        btn.setTitle("取消", for: .normal)
+        btn.setTitleColor(UIColor.black, for: .normal)
         return btn
     }()
     
     // 完成按钮
-    private lazy var doneBtn: UIButton = {
+    fileprivate lazy var doneBtn: UIButton = {
         let donebtn = UIButton()
-        donebtn.setTitle("完成", forState: .Normal)
-        donebtn.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        donebtn.setTitle("完成", for: .normal)
+        donebtn.setTitleColor(UIColor.black, for: .normal)
         return donebtn
     }()
     
@@ -83,26 +83,26 @@ public class ToolBarView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func commonInit() {
-        backgroundColor = UIColor.lightTextColor()
+    fileprivate func commonInit() {
+        backgroundColor = UIColor.lightText
         addSubview(contentView)
         contentView.addSubview(cancleBtn)
         contentView.addSubview(doneBtn)
         contentView.addSubview(titleLabel)
         
-        doneBtn.addTarget(self, action: #selector(self.doneBtnOnClick(_:)), forControlEvents: .TouchUpInside)
-        cancleBtn.addTarget(self, action: #selector(self.cancelBtnOnClick(_:)), forControlEvents: .TouchUpInside)
+        doneBtn.addTarget(self, action: #selector(doneBtnOnClick(_:)), for: .touchUpInside)
+        cancleBtn.addTarget(self, action: #selector(cancelBtnOnClick(_:)), for: .touchUpInside)
     }
     
-    func doneBtnOnClick(sender: UIButton) {
+    @objc func doneBtnOnClick(_ sender: UIButton) {
         doneAction?()
     }
-    func cancelBtnOnClick(sender: UIButton) {
+    @objc func cancelBtnOnClick(_ sender: UIButton) {
         cancelAction?()
         
     }
     
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         let margin = 15.0
         let contentHeight = Double(bounds.size.height) - 2.0
@@ -111,7 +111,7 @@ public class ToolBarView: UIView {
 
         cancleBtn.frame = CGRect(x: margin, y: 0.0, width: btnWidth, height: btnWidth)
         doneBtn.frame = CGRect(x: Double(bounds.size.width) - btnWidth - margin, y: 0.0, width: btnWidth, height: btnWidth)
-        let titleX = Double(CGRectGetMaxX(cancleBtn.frame)) + margin
+        let titleX = Double(cancleBtn.frame.maxX) + margin
         let titleW = Double(bounds.size.width) - titleX - btnWidth - margin
         
         
